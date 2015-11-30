@@ -1,0 +1,22 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "item",
+            "otherEntityName": "item",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "purchaseOrderDetails"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "purchaseOrder",
+            "otherEntityName": "purchaseOrder",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20151130230411",
+    "dto": "no",
+    "pagination": "infinite-scroll"
+}

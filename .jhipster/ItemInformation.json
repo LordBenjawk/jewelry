@@ -1,0 +1,69 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "item",
+            "otherEntityName": "item",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "itemInformation"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "category",
+            "otherEntityName": "category",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "itemNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 0,
+            "fieldValidateRulesMaxlength": 20
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "vendorItemNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 0,
+            "fieldValidateRulesMaxlength": 20
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "active",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "vip",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20151130225517",
+    "dto": "no",
+    "pagination": "infinite-scroll"
+}

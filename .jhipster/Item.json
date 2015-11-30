@@ -1,0 +1,57 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "itemInformation",
+            "otherEntityName": "itemInformation",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "category",
+            "otherEntityName": "category",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "price",
+            "otherEntityName": "price",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 4,
+            "relationshipName": "sizes",
+            "otherEntityName": "sizes",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 5,
+            "relationshipName": "color",
+            "otherEntityName": "color",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 6,
+            "relationshipName": "image",
+            "otherEntityName": "image",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "item"
+        },
+        {
+            "relationshipId": 7,
+            "relationshipName": "purchaseOrderDetails",
+            "otherEntityName": "purchaseOrderDetails",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20151130230618",
+    "dto": "no",
+    "pagination": "infinite-scroll"
+}

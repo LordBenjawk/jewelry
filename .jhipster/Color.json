@@ -1,0 +1,28 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "item",
+            "otherEntityName": "item",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "color"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 0,
+            "fieldValidateRulesMaxlength": 20
+        }
+    ],
+    "changelogDate": "20151130225933",
+    "dto": "no",
+    "pagination": "infinite-scroll"
+}

@@ -1,0 +1,36 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "item",
+            "otherEntityName": "item",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "price"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "tOne",
+            "fieldType": "Double"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "tTwo",
+            "fieldType": "Double"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "tThree",
+            "fieldType": "Double"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "vendorPrice",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20151130225717",
+    "dto": "no",
+    "pagination": "infinite-scroll"
+}

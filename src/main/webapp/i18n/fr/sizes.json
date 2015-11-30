@@ -1,0 +1,23 @@
+{
+    "jewelryApp": {
+        "sizes" : {
+            "home": {
+                "title": "Sizess",
+                "createLabel": "Créer un nouveau Sizes",
+                "createOrEditLabel": "Créer ou éditer un Sizes"
+            },
+            "created": "Un nouveau Sizes a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Sizes avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Sizes avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Sizes {{ id }} ?"
+            },
+            "detail": {
+                "title": "Sizes"
+            },
+            "name": "Name",
+            "item": "Item"
+        }
+    }
+}
+

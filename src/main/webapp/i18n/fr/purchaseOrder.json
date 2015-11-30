@@ -1,0 +1,25 @@
+{
+    "jewelryApp": {
+        "purchaseOrder" : {
+            "home": {
+                "title": "PurchaseOrders",
+                "createLabel": "Créer un nouveau PurchaseOrder",
+                "createOrEditLabel": "Créer ou éditer un PurchaseOrder"
+            },
+            "created": "Un nouveau PurchaseOrder a été créé avec l'identifiant {{ param }}",
+            "updated": "Le PurchaseOrder avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le PurchaseOrder avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le PurchaseOrder {{ id }} ?"
+            },
+            "detail": {
+                "title": "PurchaseOrder"
+            },
+            "pONumber": "PONumber",
+            "purchaseOrderDetails": "PurchaseOrderDetails",
+            "user": "User",
+            "status": "Status"
+        }
+    }
+}
+

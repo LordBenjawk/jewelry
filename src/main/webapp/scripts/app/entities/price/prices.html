@@ -1,0 +1,54 @@
+<div>
+    <h2 translate="jewelryApp.price.home.title">Prices</h2>
+    <jh-alert></jh-alert>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary" ui-sref="price.new">
+                    <span class="glyphicon glyphicon-flash"></span> <span translate="jewelryApp.price.home.createLabel">Create a new Price</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="global.field.id">ID</th>
+                    <th translate="jewelryApp.price.tOne">TOne</th>
+                    <th translate="jewelryApp.price.tTwo">TTwo</th>
+                    <th translate="jewelryApp.price.tThree">TThree</th>
+                    <th translate="jewelryApp.price.vendorPrice">VendorPrice</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="loadPage(page + 1)" infinite-scroll-disabled="links['last'] == page">
+                <tr ng-repeat="price in prices track by price.id">
+                    <td><a ui-sref="price.detail({id:price.id})">{{price.id}}</a></td>
+                    <td>{{price.tOne}}</td>
+                    <td>{{price.tTwo}}</td>
+                    <td>{{price.tThree}}</td>
+                    <td>{{price.vendorPrice}}</td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="price.detail({id:price.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="price.edit({id:price.id})"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="price.delete({id:price.id})"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

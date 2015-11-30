@@ -1,0 +1,54 @@
+<div>
+    <h2 translate="jewelryApp.category.home.title">Categorys</h2>
+    <jh-alert></jh-alert>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary" ui-sref="category.new">
+                    <span class="glyphicon glyphicon-flash"></span> <span translate="jewelryApp.category.home.createLabel">Create a new Category</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="global.field.id">ID</th>
+                    <th translate="jewelryApp.category.name">Name</th>
+                    <th translate="jewelryApp.category.categoryOrder">CategoryOrder</th>
+                    <th translate="jewelryApp.category.status">status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="loadPage(page + 1)" infinite-scroll-disabled="links['last'] == page">
+                <tr ng-repeat="category in categorys track by category.id">
+                    <td><a ui-sref="category.detail({id:category.id})">{{category.id}}</a></td>
+                    <td>{{category.name}}</td>
+                    <td>{{category.categoryOrder}}</td>
+                    <td>
+                        <a ui-sref="status.detail({id:category.status.id})">{{category.status.id}}</a>
+                    </td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="category.detail({id:category.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="category.edit({id:category.id})"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="category.delete({id:category.id})"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

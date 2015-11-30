@@ -1,0 +1,62 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myItemLabel" translate="jewelryApp.item.home.createOrEditLabel">Create or edit a Item</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="item.id" readonly />
+        </div>
+
+        <div class="form-group">
+            <label translate="jewelryApp.item.itemInformation" for="field_itemInformation">itemInformation</label>
+            <select class="form-control" id="field_itemInformation" name="itemInformation" ng-model="item.itemInformation" ng-options="itemInformation as itemInformation.id for itemInformation in iteminformations track by itemInformation.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="jewelryApp.item.category" for="field_category">category</label>
+            <select class="form-control" id="field_category" name="category" ng-model="item.category" ng-options="category as category.id for category in categorys track by category.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="jewelryApp.item.price" for="field_price">price</label>
+            <select class="form-control" id="field_price" name="price" ng-model="item.price" ng-options="price as price.id for price in prices track by price.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="jewelryApp.item.sizes" for="field_sizes">sizes</label>
+            <select class="form-control" id="field_sizes" name="sizes" ng-model="item.sizes" ng-options="sizes as sizes.id for sizes in sizess track by sizes.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="jewelryApp.item.color" for="field_color">color</label>
+            <select class="form-control" id="field_color" name="color" ng-model="item.color" ng-options="color as color.id for color in colors track by color.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label translate="jewelryApp.item.purchaseOrderDetails" for="field_purchaseOrderDetails">purchaseOrderDetails</label>
+            <select class="form-control" id="field_purchaseOrderDetails" name="purchaseOrderDetails" ng-model="item.purchaseOrderDetails" ng-options="purchaseOrderDetails as purchaseOrderDetails.id for purchaseOrderDetails in purchaseorderdetailss track by purchaseOrderDetails.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

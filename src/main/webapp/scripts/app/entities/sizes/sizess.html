@@ -1,0 +1,48 @@
+<div>
+    <h2 translate="jewelryApp.sizes.home.title">Sizess</h2>
+    <jh-alert></jh-alert>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary" ui-sref="sizes.new">
+                    <span class="glyphicon glyphicon-flash"></span> <span translate="jewelryApp.sizes.home.createLabel">Create a new Sizes</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="global.field.id">ID</th>
+                    <th translate="jewelryApp.sizes.name">Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="loadPage(page + 1)" infinite-scroll-disabled="links['last'] == page">
+                <tr ng-repeat="sizes in sizess track by sizes.id">
+                    <td><a ui-sref="sizes.detail({id:sizes.id})">{{sizes.id}}</a></td>
+                    <td>{{sizes.name}}</td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="sizes.detail({id:sizes.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="sizes.edit({id:sizes.id})"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="sizes.delete({id:sizes.id})"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

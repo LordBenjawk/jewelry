@@ -1,0 +1,50 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myPriceLabel" translate="jewelryApp.price.home.createOrEditLabel">Create or edit a Price</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="price.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="jewelryApp.price.tOne" for="field_tOne">TOne</label>
+            <input type="number" class="form-control" name="tOne" id="field_tOne"
+                    ng-model="price.tOne"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="jewelryApp.price.tTwo" for="field_tTwo">TTwo</label>
+            <input type="number" class="form-control" name="tTwo" id="field_tTwo"
+                    ng-model="price.tTwo"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="jewelryApp.price.tThree" for="field_tThree">TThree</label>
+            <input type="number" class="form-control" name="tThree" id="field_tThree"
+                    ng-model="price.tThree"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="jewelryApp.price.vendorPrice" for="field_vendorPrice">VendorPrice</label>
+            <input type="number" class="form-control" name="vendorPrice" id="field_vendorPrice"
+                    ng-model="price.vendorPrice"
+                     />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

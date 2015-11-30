@@ -1,0 +1,56 @@
+<div>
+    <h2 translate="jewelryApp.purchaseOrder.home.title">PurchaseOrders</h2>
+    <jh-alert></jh-alert>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary" ui-sref="purchaseOrder.new">
+                    <span class="glyphicon glyphicon-flash"></span> <span translate="jewelryApp.purchaseOrder.home.createLabel">Create a new PurchaseOrder</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="global.field.id">ID</th>
+                    <th translate="jewelryApp.purchaseOrder.pONumber">PONumber</th>
+                    <th translate="jewelryApp.purchaseOrder.user">user</th>
+                    <th translate="jewelryApp.purchaseOrder.status">status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="loadPage(page + 1)" infinite-scroll-disabled="links['last'] == page">
+                <tr ng-repeat="purchaseOrder in purchaseOrders track by purchaseOrder.id">
+                    <td><a ui-sref="purchaseOrder.detail({id:purchaseOrder.id})">{{purchaseOrder.id}}</a></td>
+                    <td>{{purchaseOrder.pONumber}}</td>
+                    <td>
+                        {{purchaseOrder.user.id}}
+                    </td>
+                    <td>
+                        <a ui-sref="status.detail({id:purchaseOrder.status.id})">{{purchaseOrder.status.id}}</a>
+                    </td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="purchaseOrder.detail({id:purchaseOrder.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="purchaseOrder.edit({id:purchaseOrder.id})"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="purchaseOrder.delete({id:purchaseOrder.id})"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

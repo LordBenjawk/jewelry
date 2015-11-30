@@ -1,0 +1,24 @@
+{
+    "jewelryApp": {
+        "purchaseOrder" : {
+            "home": {
+                "title": "PurchaseOrders",
+                "createLabel": "Create a new PurchaseOrder",
+                "createOrEditLabel": "Create or edit a PurchaseOrder"
+            },
+            "created": "A new PurchaseOrder is created with identifier {{ param }}",
+            "updated": "A PurchaseOrder is updated with identifier {{ param }}",
+            "deleted": "A PurchaseOrder is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete PurchaseOrder {{ id }}?"
+            },
+            "detail": {
+                "title": "PurchaseOrder"
+            },
+            "pONumber": "PONumber",
+            "purchaseOrderDetails": "PurchaseOrderDetails",
+            "user": "User",
+            "status": "Status"
+        }
+    }
+}
