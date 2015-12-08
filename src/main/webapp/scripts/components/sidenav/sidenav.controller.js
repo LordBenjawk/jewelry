@@ -1,18 +1,17 @@
 'use strict';
 
 angular.module('jewelryApp')
-    .controller('NavbarController', function ($scope, $location, $state, Auth, Principal, ENV, $mdSidenav) {
+    .controller('SidenavController', function ($scope, $location, $state, Auth, Principal, ENV) {
         $scope.isAuthenticated = Principal.isAuthenticated;
         $scope.$state = $state;
         $scope.inProduction = ENV === 'prod';
 
         $scope.logout = function () {
             Auth.logout();
-            $state.go('home');
+            $state.go('login');
         };
 
-        $scope.toggleSidenav = function(menuId) {
-            console.log("toggle");
+        $scope.toggleSideNav = function(menuId) {
             $mdSidenav(menuId).toggle();
         };
     });

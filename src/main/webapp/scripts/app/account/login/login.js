@@ -5,9 +5,9 @@ angular.module('jewelryApp')
         $stateProvider
             .state('login', {
                 parent: 'account',
-                url: '/login',
+                url: '/',
                 data: {
-                    authorities: [], 
+                    authorities: [],
                     pageTitle: 'login.title'
                 },
                 views: {

@@ -5,7 +5,7 @@ angular.module('jewelryApp')
         $stateProvider
             .state('home', {
                 parent: 'site',
-                url: '/',
+                url: '/main',
                 data: {
                     authorities: []
                 },

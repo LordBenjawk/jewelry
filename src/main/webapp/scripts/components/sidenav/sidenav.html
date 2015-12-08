@@ -1,0 +1,55 @@
+<div layout="column" ng-if="isAuthenticated()">
+    <div flex>
+        <!--User Info-->
+        <div class="user-info-wrapper" layout="row">
+            <div class="user-image-container " flex="33">
+                <div class="user-image circle">
+
+                </div>
+            </div>
+
+            <div class="user-info-container" layout="column" flex="66" layout="column">
+                <div class="mt-sm">
+                    <div>Login</div>
+                    <div class="bold">Role</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div flex>
+        <!-- Sidenav options Dashboard -->
+        <div class="sn-option-container" layout="column">
+            <div class="sn-option-title" flex>
+                Dashboard
+            </div>
+            <md-button class="option-item">Dashboard</md-button>
+            <md-button class="option-item">Analisys</md-button>
+        </div>
+
+        <!-- Sidenav options -->
+        <div class="sn-option-container" layout="column">
+            <div class="sn-option-title" flex>
+                Components
+            </div>
+            <md-button class="option-item">Purchase Orders</md-button>
+            <md-button class="option-item">Items</md-button>
+            <md-button class="option-item">Users</md-button>
+            <md-button class="option-item">Categories</md-button>
+        </div>
+
+        <!-- Sidenav options Help & Feedback-->
+        <div class="sn-option-container" layout="column">
+            <div class="sn-option-title" flex>
+                Support
+            </div>
+            <md-button class="option-item">Help</md-button>
+            <md-button class="option-item">Issues</md-button>
+            <md-button class="option-item" ng-click="logout()">Logout</md-button>
+        </div>
+
+    </div>
+
+
+</div>

@@ -198,3 +198,36 @@ ul#strengthBar {
     background-color: #eee;
     opacity: 1;
 }
+
+.user-info-wrapper {
+    background: url("../images/bg.png") no-repeat center top;
+    border-bottom: thin solid #d4d4d4;
+}
+
+.user-info-wrapper .user-image-container {
+    padding: 25px;
+}
+
+.user-image-container .user-image {
+    width: 64px;
+    height: 64px;
+    background: url("../images/hipster.png") no-repeat center top;
+}
+
+.user-info-container {
+    padding-left: 10px;
+}
+
+.sn-option-container {
+}
+
+.sn-option-container .sn-option-title {
+    padding:20px 20px 5px;
+    font-weight: bold;
+}
+
+.sn-option-container .option-item{
+    margin:0px;
+}
+
+
