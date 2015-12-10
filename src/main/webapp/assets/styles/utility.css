@@ -20,6 +20,11 @@
     margin:0px;
 }
 
-.full-height{
-    height:100%;
+.hidden{
+    visibility: hidden;
+}
+
+/*BACKGROUND COLORS*/
+.bg-indigo{
+    background-color: #3f51b5;
 }

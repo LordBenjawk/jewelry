@@ -4,9 +4,27 @@ angular.module('jewelryApp')
     .controller('LoginController', function ($rootScope, $scope, $state, $timeout, Auth) {
         $scope.user = {};
         $scope.errors = {};
-
         $scope.rememberMe = true;
+
+        var position = {
+            bottom: false,
+            top: true,
+            left: false,
+            right: true
+        };
+        $scope.toastPosition = angular.extend({},last);
+
+        $scope.showSimpleToast = function() {
+            $mdToast.show(
+                $mdToast.simple()
+                    .textContent('Simple Toast!')
+                    .position($scope.getToastPosition())
+                    .hideDelay(3000)
+            );
+        };
+
         $timeout(function (){angular.element('[ng-model="username"]').focus();});
+
         $scope.login = function (event) {
             event.preventDefault();
             Auth.login({
@@ -24,4 +42,23 @@ angular.module('jewelryApp')
                 $scope.authenticationError = true;
             });
         };
+
+        $scope.getToastPosition = function() {
+            sanitizePosition();
+
+            return Object.keys($scope.toastPosition)
+                .filter(function(pos) { return $scope.toastPosition[pos]; })
+                .join(' ');
+        };
+
+        function sanitizePosition() {
+            var current = $scope.toastPosition;
+
+            if ( current.bottom && last.top ) current.top = false;
+            if ( current.top && last.bottom ) current.bottom = false;
+            if ( current.right && last.left ) current.left = false;
+            if ( current.left && last.right ) current.right = false;
+
+            last = angular.extend({},current);
+        }
     });

@@ -12,7 +12,13 @@ angular.module('jewelryApp')
         };
 
         $scope.toggleSidenav = function(menuId) {
-            console.log("toggle");
             $mdSidenav(menuId).toggle();
         };
+
+        $scope.$watch(
+            function(scope) { return scope.isAuthenticated()},
+            function(newValue, oldValue) {
+                (newValue) ? $('.js-sidenav').addClass("hidden") : $mdSidenav('left').close();
+            }
+        )
     });
