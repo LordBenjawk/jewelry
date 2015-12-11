@@ -12,7 +12,7 @@ angular.module('jewelryApp')
             left: false,
             right: true
         };
-        $scope.toastPosition = angular.extend({},last);
+        $scope.toastPosition = angular.extend({},position);
 
         $scope.showSimpleToast = function() {
             $mdToast.show(
