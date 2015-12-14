@@ -1,14 +1,51 @@
-<!--<div layout="column">-->
-    <!--<div flex>-->
-        <!--<h1 translate="login.title">Sign in</h1>-->
-    <!--</div>-->
-    <!--<div>-->
-        <!--<strong>Failed to sign in!</strong> Please check your credentials and try again.-->
-    <!--</div>-->
-<!--</div>-->
+<div layout="row">
+    <div flex-gt-md="33" flex flex-offset-gt-md="35">
+        <div layout="column">
+            <md-content layout-padding>
+                <form class="form" role="form">
+                    <div>
+                        <h1 translate="login.title">Sign in</h1>
+                    </div>
+
+                    <md-input-container class="md-block">
+                        <label translate="global.form.username">Login</label>
+
+                        <input type="text" id="username" ng-model="username" required>
+                        <div ng-messages="projectForm.description.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block">
+                        <label translate="login.form.password">Password</label>
+
+                        <input type="password" id="password" ng-model="password" required>
+                        <div ng-messages="projectForm.description.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
+                    </md-input-container>
+
+                    <div layout="row">
+                        <div flex-gt-sm="50" flex-offset="25">
+                            <div layout="column">
+                                <md-switch ng-model="rememberMe" id="rememberMe" class="md-primary">
+                                    <span translate="login.form.rememberme">Remember me</span>
+                                </md-switch>
+
+                                <md-button ng-click="login()" translate="login.form.button" class="md-raised md-primary">
+                                    Login
+                                </md-button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </md-content>
+        </div>
+    </div>
+</div>
 
 
-
+<!--
 <div>
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
@@ -22,12 +59,11 @@
             <form class="form" role="form" ng-submit="login($event)">
                 <div class="form-group">
                     <label for="username" translate="global.form.username">Login</label>
-                    <input type="text" class="form-control" id="username" placeholder="{{'global.form.username.placeholder' | translate}}" ng-model="username">
+                    <!--<input type="text" class="form-control" id="username" placeholder="{{'global.form.username.placeholder' | translate}}" ng-model="username">
                 </div>
                 <div class="form-group">
                     <label for="password" translate="login.form.password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="{{'login.form.password.placeholder' | translate}}"
-                           ng-model="password">
+                    <input type="password" class="form-control" id="password" placeholder="{{'login.form.password.placeholder' | translate}}" ng-model="password">
                 </div>
                 <div class="form-group">
                     <label for="rememberMe">
@@ -46,4 +82,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
