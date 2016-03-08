@@ -11,12 +11,20 @@
     "devDatabaseType": "postgresql",
     "prodDatabaseType": "postgresql",
     "searchEngine": "no",
+<<<<<<< HEAD
     "useSass": true,
+=======
+    "useSass": false,
+>>>>>>> 0e79a166ffdeecd120db831d85955c74b441ee29
     "buildTool": "gradle",
     "frontendBuilder": "grunt",
     "enableTranslation": true,
     "enableSocialSignIn": false,
+<<<<<<< HEAD
     "rememberMeKey": "6bab39df3a976f5be6ca0a22e2a050d89de5a946",
+=======
+    "rememberMeKey": "85e61becfa9a819eba9a1f669e7935f06fd4fbf6",
+>>>>>>> 0e79a166ffdeecd120db831d85955c74b441ee29
     "testFrameworks": [
       "gatling",
       "cucumber"

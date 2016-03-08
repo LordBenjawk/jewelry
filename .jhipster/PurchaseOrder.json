@@ -25,6 +25,7 @@
     "fields": [
         {
             "fieldId": 1,
+<<<<<<< HEAD
             "fieldName": "purchaseOrderNumber",
             "fieldType": "String"
         }
@@ -32,4 +33,14 @@
     "changelogDate": "20160307175659",
     "dto": "no",
     "pagination": "pagination"
+=======
+            "fieldName": "pONumber",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        }
+    ],
+    "changelogDate": "20151130230205",
+    "dto": "no",
+    "pagination": "infinite-scroll"
+>>>>>>> 0e79a166ffdeecd120db831d85955c74b441ee29
 }

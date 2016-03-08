@@ -2,8 +2,13 @@
     "relationships": [
         {
             "relationshipId": 1,
+<<<<<<< HEAD
             "relationshipName": "itemInformation",
             "otherEntityName": "itemInformation",
+=======
+            "relationshipName": "item",
+            "otherEntityName": "item",
+>>>>>>> 0e79a166ffdeecd120db831d85955c74b441ee29
             "relationshipType": "one-to-many",
             "otherEntityRelationshipName": "category"
         },
@@ -21,8 +26,17 @@
             "fieldName": "name",
             "fieldType": "String",
             "fieldValidateRules": [
+<<<<<<< HEAD
                 "required"
             ]
+=======
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 0,
+            "fieldValidateRulesMaxlength": 20
+>>>>>>> 0e79a166ffdeecd120db831d85955c74b441ee29
         },
         {
             "fieldId": 2,
@@ -30,7 +44,13 @@
             "fieldType": "Integer"
         }
     ],
+<<<<<<< HEAD
     "changelogDate": "20160307172258",
     "dto": "no",
     "pagination": "pagination"
+=======
+    "changelogDate": "20151130225248",
+    "dto": "no",
+    "pagination": "infinite-scroll"
+>>>>>>> 0e79a166ffdeecd120db831d85955c74b441ee29
 }

@@ -20,6 +20,7 @@
             "otherEntityName": "category",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
+<<<<<<< HEAD
         },
         {
             "relationshipId": 4,
@@ -27,6 +28,8 @@
             "otherEntityName": "status",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
+=======
+>>>>>>> 0e79a166ffdeecd120db831d85955c74b441ee29
         }
     ],
     "fields": [
@@ -35,13 +38,33 @@
             "fieldName": "itemNumber",
             "fieldType": "String",
             "fieldValidateRules": [
+<<<<<<< HEAD
                 "required"
             ]
+=======
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 0,
+            "fieldValidateRulesMaxlength": 20
+>>>>>>> 0e79a166ffdeecd120db831d85955c74b441ee29
         },
         {
             "fieldId": 2,
             "fieldName": "vendorItemNumber",
+<<<<<<< HEAD
             "fieldType": "String"
+=======
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 0,
+            "fieldValidateRulesMaxlength": 20
+>>>>>>> 0e79a166ffdeecd120db831d85955c74b441ee29
         },
         {
             "fieldId": 3,
@@ -50,6 +73,7 @@
         },
         {
             "fieldId": 4,
+<<<<<<< HEAD
             "fieldName": "vip",
             "fieldType": "Boolean",
             "fieldValidateRules": [
@@ -60,4 +84,18 @@
     "changelogDate": "20160307173717",
     "dto": "no",
     "pagination": "pagination"
+=======
+            "fieldName": "active",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "vip",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20151130225517",
+    "dto": "no",
+    "pagination": "infinite-scroll"
+>>>>>>> 0e79a166ffdeecd120db831d85955c74b441ee29
 }

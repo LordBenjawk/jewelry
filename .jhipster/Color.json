@@ -14,6 +14,7 @@
             "fieldName": "name",
             "fieldType": "String",
             "fieldValidateRules": [
+<<<<<<< HEAD
                 "required"
             ]
         }
@@ -21,4 +22,17 @@
     "changelogDate": "20160307174533",
     "dto": "no",
     "pagination": "pagination"
+=======
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 0,
+            "fieldValidateRulesMaxlength": 20
+        }
+    ],
+    "changelogDate": "20151130225933",
+    "dto": "no",
+    "pagination": "infinite-scroll"
+>>>>>>> 0e79a166ffdeecd120db831d85955c74b441ee29
 }

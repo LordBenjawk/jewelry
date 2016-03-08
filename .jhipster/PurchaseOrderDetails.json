@@ -4,9 +4,14 @@
             "relationshipId": 1,
             "relationshipName": "item",
             "otherEntityName": "item",
+<<<<<<< HEAD
             "relationshipType": "many-to-many",
             "otherEntityField": "id",
             "ownerSide": true
+=======
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "purchaseOrderDetails"
+>>>>>>> 0e79a166ffdeecd120db831d85955c74b441ee29
         },
         {
             "relationshipId": 2,
@@ -17,7 +22,13 @@
         }
     ],
     "fields": [],
+<<<<<<< HEAD
     "changelogDate": "20160307182159",
     "dto": "no",
     "pagination": "pagination"
+=======
+    "changelogDate": "20151130230411",
+    "dto": "no",
+    "pagination": "infinite-scroll"
+>>>>>>> 0e79a166ffdeecd120db831d85955c74b441ee29
 }

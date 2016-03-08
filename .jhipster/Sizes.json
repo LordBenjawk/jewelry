@@ -4,8 +4,8 @@
             "relationshipId": 1,
             "relationshipName": "item",
             "otherEntityName": "item",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "sizes"
         }
     ],
     "fields": [
@@ -14,15 +14,6 @@
             "fieldName": "name",
             "fieldType": "String",
             "fieldValidateRules": [
-<<<<<<< HEAD
-                "required"
-            ]
-        }
-    ],
-    "changelogDate": "20160307182322",
-    "dto": "no",
-    "pagination": "pagination"
-=======
                 "required",
                 "minlength",
                 "maxlength"
@@ -31,8 +22,7 @@
             "fieldValidateRulesMaxlength": 20
         }
     ],
-    "changelogDate": "20151130230704",
+    "changelogDate": "20151130225810",
     "dto": "no",
     "pagination": "infinite-scroll"
->>>>>>> 0e79a166ffdeecd120db831d85955c74b441ee29
 }

@@ -2,40 +2,70 @@
     "relationships": [
         {
             "relationshipId": 1,
+<<<<<<< HEAD
             "relationshipName": "price",
             "otherEntityName": "price",
+=======
+            "relationshipName": "itemInformation",
+            "otherEntityName": "itemInformation",
+>>>>>>> 0e79a166ffdeecd120db831d85955c74b441ee29
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
         },
         {
             "relationshipId": 2,
+<<<<<<< HEAD
             "relationshipName": "itemInformation",
             "otherEntityName": "itemInformation",
+=======
+            "relationshipName": "category",
+            "otherEntityName": "category",
+>>>>>>> 0e79a166ffdeecd120db831d85955c74b441ee29
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
         },
         {
             "relationshipId": 3,
+<<<<<<< HEAD
             "relationshipName": "size",
             "otherEntityName": "size",
+=======
+            "relationshipName": "price",
+            "otherEntityName": "price",
+>>>>>>> 0e79a166ffdeecd120db831d85955c74b441ee29
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
         },
         {
             "relationshipId": 4,
+<<<<<<< HEAD
+=======
+            "relationshipName": "sizes",
+            "otherEntityName": "sizes",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 5,
+>>>>>>> 0e79a166ffdeecd120db831d85955c74b441ee29
             "relationshipName": "color",
             "otherEntityName": "color",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
         },
         {
+<<<<<<< HEAD
             "relationshipId": 5,
+=======
+            "relationshipId": 6,
+>>>>>>> 0e79a166ffdeecd120db831d85955c74b441ee29
             "relationshipName": "image",
             "otherEntityName": "image",
             "relationshipType": "one-to-many",
             "otherEntityRelationshipName": "item"
         },
         {
+<<<<<<< HEAD
             "relationshipId": 6,
             "relationshipName": "purchaseOrderDetails",
             "otherEntityName": "purchaseOrderDetails",
@@ -47,10 +77,16 @@
             "relationshipId": 7,
             "relationshipName": "status",
             "otherEntityName": "status",
+=======
+            "relationshipId": 7,
+            "relationshipName": "purchaseOrderDetails",
+            "otherEntityName": "purchaseOrderDetails",
+>>>>>>> 0e79a166ffdeecd120db831d85955c74b441ee29
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
         }
     ],
+<<<<<<< HEAD
     "fields": [
         {
             "fieldId": 1,
@@ -64,4 +100,10 @@
     "changelogDate": "20160307182022",
     "dto": "no",
     "pagination": "pagination"
+=======
+    "fields": [],
+    "changelogDate": "20151130230618",
+    "dto": "no",
+    "pagination": "infinite-scroll"
+>>>>>>> 0e79a166ffdeecd120db831d85955c74b441ee29
 }

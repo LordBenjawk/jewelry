@@ -1,7 +1,10 @@
 ######################
 # Project Specific
 ######################
+<<<<<<< HEAD
 /src/main/webapp/assets/styles/main.css
+=======
+>>>>>>> 0e79a166ffdeecd120db831d85955c74b441ee29
 /src/main/webapp/dist
 
 ######################
