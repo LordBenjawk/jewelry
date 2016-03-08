@@ -1,0 +1,70 @@
+
+<div>
+    <h2><span translate="jewelryApp.item.detail.title">Item</span> {{item.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="jewelryApp.item.name">Name</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{item.name}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="jewelryApp.item.price">price</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="price.detail({id:item.price.id})">{{item.price.id}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="jewelryApp.item.itemInformation">itemInformation</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="itemInformation.detail({id:item.itemInformation.id})">{{item.itemInformation.id}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="jewelryApp.item.size">size</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="size.detail({id:item.size.id})">{{item.size.id}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="jewelryApp.item.color">color</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="color.detail({id:item.color.id})">{{item.color.id}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="jewelryApp.item.status">status</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="status.detail({id:item.status.id})">{{item.status.id}}</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

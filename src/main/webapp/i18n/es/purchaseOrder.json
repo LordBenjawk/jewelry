@@ -1,0 +1,24 @@
+{
+    "jewelryApp": {
+        "purchaseOrder" : {
+            "home": {
+                "title": "Orden de Compra",
+                "createLabel": "Crea una nueva Orden de Compra",
+                "createOrEditLabel": "Crea o edita una Orden de Compra"
+            },
+            "created": "Una nueva Orden de Compra es creada con identificador {{ param }}",
+            "updated": "Una Orden de Compra es actualizada con identificador {{ param }}",
+            "deleted": "Una Orden de Compra es borrada con identificador {{ param }}",
+            "delete": {
+                "question": "Estas seguro que quieres borrar Orden de Compra {{ id }}?"
+            },
+            "detail": {
+                "title": "Orden de Compra"
+            },
+            "pONumber": "Numero PON",
+            "purchaseOrderDetails": "Detalles de Orden de Compra",
+            "user": "Usuario",
+            "status": "Status"
+        }
+    }
+}

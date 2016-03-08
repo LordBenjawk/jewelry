@@ -1,0 +1,22 @@
+{
+    "jewelryApp": {
+        "purchaseOrderDetails" : {
+            "home": {
+                "title": "Detalles de Orden de Compra",
+                "createLabel": "Crea un nuevo Detalle de Orden de Compra",
+                "createOrEditLabel": "Crea o edita un Detalle de Orden de Compra"
+            },
+            "created": "Un Detalle de Orden de Compra es creado con identificador {{ param }}",
+            "updated": "Un Detalle de Orden de Compra es actualizado con identificador {{ param }}",
+            "deleted": "Un Detalle de Orden de Compra es borrado con identificador{{ param }}",
+            "delete": {
+                "question": "Estas seguro que quieres borrar Detalle de Orden de Compra {{ id }}?"
+            },
+            "detail": {
+                "title": "Detalles de Orden de Compra"
+            },
+            "item": "&Iacute;tem",
+            "purchaseOrder": "Orden de Compra"
+        }
+    }
+}

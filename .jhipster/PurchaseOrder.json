@@ -1,0 +1,35 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "purchaseOrderDetails",
+            "otherEntityName": "purchaseOrderDetails",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "purchaseOrder"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "status",
+            "otherEntityName": "status",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "purchaseOrderNumber",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20160307175659",
+    "dto": "no",
+    "pagination": "pagination"
+}

@@ -1,0 +1,36 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "itemInformation",
+            "otherEntityName": "itemInformation",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "category"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "status",
+            "otherEntityName": "status",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "categoryOrder",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20160307172258",
+    "dto": "no",
+    "pagination": "pagination"
+}

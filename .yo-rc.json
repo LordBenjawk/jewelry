@@ -1,0 +1,25 @@
+{
+  "generator-jhipster": {
+    "baseName": "jewelry",
+    "packageName": "com.ea.jewelry",
+    "packageFolder": "com/ea/jewelry",
+    "authenticationType": "session",
+    "hibernateCache": "ehcache",
+    "clusteredHttpSession": "no",
+    "websocket": "no",
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": "no",
+    "useSass": true,
+    "buildTool": "gradle",
+    "frontendBuilder": "grunt",
+    "enableTranslation": true,
+    "enableSocialSignIn": false,
+    "rememberMeKey": "6bab39df3a976f5be6ca0a22e2a050d89de5a946",
+    "testFrameworks": [
+      "gatling",
+      "cucumber"
+    ]
+  }
+}

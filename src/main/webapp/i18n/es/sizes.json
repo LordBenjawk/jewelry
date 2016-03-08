@@ -1,0 +1,22 @@
+{
+    "jewelryApp": {
+        "sizes" : {
+            "home": {
+                "title": "Tamaños",
+                "createLabel": "Crea un nuevo Tamaños",
+                "createOrEditLabel": "Crea o edita un Tamaños"
+            },
+            "created": "Un nuevo Tamaños es creado con identificador {{ param }}",
+            "updated": "Un Tamaños es actualizado con identificador {{ param }}",
+            "deleted": "Un Tamaños es borrado con identificador {{ param }}",
+            "delete": {
+                "question": "Estas seguro que quieres borrar Tamaños {{ id }}?"
+            },
+            "detail": {
+                "title": "Tamaños"
+            },
+            "name": "Nombre",
+            "item": "&Iacute;tem"
+        }
+    }
+}

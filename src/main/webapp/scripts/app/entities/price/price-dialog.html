@@ -1,0 +1,102 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myPriceLabel" translate="jewelryApp.price.home.createOrEditLabel">Create or edit a Price</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="price.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="jewelryApp.price.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="price.name"
+                    required />
+            <div ng-show="editForm.name.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.name.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="jewelryApp.price.tierOne" for="field_tierOne">TierOne</label>
+            <input type="number" class="form-control" name="tierOne" id="field_tierOne"
+                    ng-model="price.tierOne"
+                    required />
+            <div ng-show="editForm.tierOne.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.tierOne.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.tierOne.$error.number" translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="jewelryApp.price.tierTwo" for="field_tierTwo">TierTwo</label>
+            <input type="number" class="form-control" name="tierTwo" id="field_tierTwo"
+                    ng-model="price.tierTwo"
+                    required />
+            <div ng-show="editForm.tierTwo.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.tierTwo.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.tierTwo.$error.number" translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="jewelryApp.price.tierThree" for="field_tierThree">TierThree</label>
+            <input type="number" class="form-control" name="tierThree" id="field_tierThree"
+                    ng-model="price.tierThree"
+                    required />
+            <div ng-show="editForm.tierThree.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.tierThree.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.tierThree.$error.number" translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="jewelryApp.price.vendorPrice" for="field_vendorPrice">VendorPrice</label>
+            <input type="number" class="form-control" name="vendorPrice" id="field_vendorPrice"
+                    ng-model="price.vendorPrice"
+                    required />
+            <div ng-show="editForm.vendorPrice.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.vendorPrice.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.vendorPrice.$error.number" translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

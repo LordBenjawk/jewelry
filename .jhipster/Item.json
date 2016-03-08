@@ -1,0 +1,67 @@
+{
+    "relationships": [
+        {
+            "relationshipId": 1,
+            "relationshipName": "price",
+            "otherEntityName": "price",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 2,
+            "relationshipName": "itemInformation",
+            "otherEntityName": "itemInformation",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 3,
+            "relationshipName": "size",
+            "otherEntityName": "size",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 4,
+            "relationshipName": "color",
+            "otherEntityName": "color",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipId": 5,
+            "relationshipName": "image",
+            "otherEntityName": "image",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "item"
+        },
+        {
+            "relationshipId": 6,
+            "relationshipName": "purchaseOrderDetails",
+            "otherEntityName": "purchaseOrderDetails",
+            "relationshipType": "many-to-many",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "item"
+        },
+        {
+            "relationshipId": 7,
+            "relationshipName": "status",
+            "otherEntityName": "status",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20160307182022",
+    "dto": "no",
+    "pagination": "pagination"
+}
