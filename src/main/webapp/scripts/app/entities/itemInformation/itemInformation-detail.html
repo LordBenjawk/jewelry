@@ -1,0 +1,78 @@
+
+<div>
+    <h2><span translate="jewelryApp.itemInformation.detail.title">ItemInformation</span> {{itemInformation.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="jewelryApp.itemInformation.itemNumber">ItemNumber</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{itemInformation.itemNumber}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="jewelryApp.itemInformation.vendorItemNumber">VendorItemNumber</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{itemInformation.vendorItemNumber}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="jewelryApp.itemInformation.description">Description</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{itemInformation.description}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="jewelryApp.itemInformation.vip">Vip</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{itemInformation.vip}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="jewelryApp.itemInformation.user">user</span>
+                </td>
+                <td>
+                    {{itemInformation.user.id}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="jewelryApp.itemInformation.category">category</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="category.detail({id:itemInformation.category.id})">{{itemInformation.category.id}}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="jewelryApp.itemInformation.status">status</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="status.detail({id:itemInformation.status.id})">{{itemInformation.status.id}}</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

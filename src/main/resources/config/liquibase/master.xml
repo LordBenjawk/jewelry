@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160307163041_added_entity_UserInformation.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160307171332_added_entity_Status.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160307172258_added_entity_Category.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160307173717_added_entity_ItemInformation.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160307173953_added_entity_Price.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160307174311_added_entity_Size.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160307174533_added_entity_Color.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160307175659_added_entity_PurchaseOrder.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160307182022_added_entity_Item.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160307182159_added_entity_PurchaseOrderDetails.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160307182322_added_entity_Image.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160307182358_added_entity_ShoppingCart.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160307182540_added_entity_ShoppingCartDetails.xml" relativeToChangelogFile="false"/>
+    <!-- JHipster will add liquibase changelogs here -->
+</databaseChangeLog>

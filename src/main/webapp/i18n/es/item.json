@@ -1,0 +1,27 @@
+{
+    "jewelryApp": {
+        "item" : {
+            "home": {
+                "title": "&Iacute;tem",
+                "createLabel": "Crea un nuevo &Iacute;tem",
+                "createOrEditLabel": "Crea o edita un &Iacute;tem"
+            },
+            "created": "Un nuevo &Iacute;tem es creado con identificador {{ param }}",
+            "updated": "Un &Iacute;tem es actualizado con identificador {{ param }}",
+            "deleted": "Un &Iacute;tem es borrado con identificador {{ param }}",
+            "delete": {
+                "question": "Estas seguro que quieres borrar &Iacute;tem {{ id }}?"
+            },
+            "detail": {
+                "title": "&Iacute;tem"
+            },
+            "itemInformation": "Informaci&oacute;n de &Iacute;tem",
+            "category": "Categor&iacute;a",
+            "price": "Precio",
+            "sizes": "Tamaños",
+            "color": "Color",
+            "image": "Imagen",
+            "purchaseOrderDetails": "DetallesdeOrdendeCompra"
+        }
+    }
+}

@@ -1,0 +1,11 @@
+jhipster-prod-postgresql:
+  container_name: jewelry-prod-postgresql
+  image: postgres:9.4.5
+  # volumes:
+  # - ~/volumes/jhipster/jewelry/prod-postgresql/:/var/lib/postgresql/
+  environment:
+  - POSTGRES_USER=jewelry
+  - POSTGRES_PASSWORD=
+  ports:
+  - "5432:5432"
+

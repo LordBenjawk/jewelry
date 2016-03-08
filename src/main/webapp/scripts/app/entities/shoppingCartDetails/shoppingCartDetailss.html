@@ -1,0 +1,67 @@
+<div>
+    <h2 translate="jewelryApp.shoppingCartDetails.home.title">ShoppingCartDetailss</h2>
+    <jh-alert></jh-alert>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary" ui-sref="shoppingCartDetails.new">
+                    <span class="glyphicon glyphicon-flash"></span> <span translate="jewelryApp.shoppingCartDetails.home.createLabel">Create a new ShoppingCartDetails</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="global.field.id">ID</th>
+                    <th translate="jewelryApp.shoppingCartDetails.shoppingCart">shoppingCart</th>
+                    <th translate="jewelryApp.shoppingCartDetails.item">item</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="shoppingCartDetails in shoppingCartDetailss track by shoppingCartDetails.id">
+                    <td><a ui-sref="shoppingCartDetails.detail({id:shoppingCartDetails.id})">{{shoppingCartDetails.id}}</a></td>
+                    <td>
+                        <a ui-sref="shoppingCart.detail({id:shoppingCartDetails.shoppingCart.id})">{{shoppingCartDetails.shoppingCart.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="item.detail({id:shoppingCartDetails.item.id})">{{shoppingCartDetails.item.id}}</a>
+                    </td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="shoppingCartDetails.detail({id:shoppingCartDetails.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="shoppingCartDetails.edit({id:shoppingCartDetails.id})"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="shoppingCartDetails.delete({id:shoppingCartDetails.id})"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <nav>
+            <ul class="pagination">
+                <li ng-show="links['first'] >= 0" ng-click="loadPage(links['first'])"><a>&lt;&lt;</a></li>
+                <li ng-show="page > 0" ng-click="loadPage(links['prev'] || 0)"><a>&lt;</a></li>
+                <li ng-show="page > 1" ng-click="loadPage(page - 2)"><a>{{page - 1}}</a></li>
+                <li ng-show="page > 0" ng-click="loadPage(page - 1)"><a>{{page}}</a></li>
+                <li class="active"><a>{{page + 1}}</a></li>
+                <li ng-show="page < links['last']" ng-click="loadPage(page + 1)"><a>{{page + 2}}</a></li>
+                <li ng-show="page < links['last'] - 1" ng-click="loadPage(page + 2)"><a>{{page + 3}}</a></li>
+                <li ng-show="links['next']" ng-click="loadPage(links['next'])"><a>&gt;</a></li>
+                <li ng-show="links['last'] > 0" ng-click="loadPage(links['last'])"><a>&gt;&gt;</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
