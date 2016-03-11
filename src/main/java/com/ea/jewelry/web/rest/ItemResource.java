@@ -1,7 +1,9 @@
 package com.ea.jewelry.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.ea.jewelry.domain.Image;
 import com.ea.jewelry.domain.Item;
+import com.ea.jewelry.repository.ImageRepository;
 import com.ea.jewelry.repository.ItemRepository;
 import com.ea.jewelry.web.rest.util.HeaderUtil;
 import com.ea.jewelry.web.rest.util.PaginationUtil;
@@ -13,6 +15,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -21,6 +24,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * REST controller for managing Item.
@@ -33,6 +37,9 @@ public class ItemResource {
 
     @Inject
     private ItemRepository itemRepository;
+
+    @Inject
+    private ImageRepository imageRepository;
 
     /**
      * POST  /items -> Create a new item.
@@ -94,9 +101,10 @@ public class ItemResource {
     public ResponseEntity<Item> getItem(@PathVariable Long id) {
         log.debug("REST request to get Item : {}", id);
         return Optional.ofNullable(itemRepository.findOne(id))
-            .map(item -> new ResponseEntity<>(
-                item,
-                HttpStatus.OK))
+            .map(item -> {
+                item = getItemImage(item);
+                return new ResponseEntity<>(item, HttpStatus.OK);
+            })
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
@@ -111,5 +119,19 @@ public class ItemResource {
         log.debug("REST request to delete Item : {}", id);
         itemRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("item", id.toString())).build();
+    }
+
+    @Transactional(readOnly = true)
+    public Item getItemImage(Item item) {
+        Set<Image> images = imageRepository.findAllByItem(item);
+        item.setImages(images);
+        return item;
+    }
+
+    private static Image getEmptyImage() {
+        Image image = new Image();
+        image.setId(0L);
+        image.setName("assets/images/hipster.png");
+        return image;
     }
 }

@@ -41,9 +41,9 @@ angular.module('jewelryApp')
                         var isAuthenticated = Principal.isAuthenticated();
 
                         // an authenticated user can't access to login and register pages
-                        if (isAuthenticated && $rootScope.toState.parent === 'account' && ($rootScope.toState.name === 'login' || $rootScope.toState.name === 'register')) {
-                            $state.go('home');
-                        }
+                        //if (isAuthenticated && $rootScope.toState.parent === 'account' && ($rootScope.toState.name === 'login' || $rootScope.toState.name === 'register')) {
+                        //    $state.go('home');
+                        //}
 
                         if ($rootScope.toState.data.authorities && $rootScope.toState.data.authorities.length > 0 && !Principal.hasAnyAuthority($rootScope.toState.data.authorities)) {
                             if (isAuthenticated) {

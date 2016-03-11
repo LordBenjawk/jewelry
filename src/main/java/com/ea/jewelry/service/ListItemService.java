@@ -65,7 +65,7 @@ public class ListItemService {
     private static Image getEmptyImage() {
         Image image = new Image();
         image.setId(0L);
-        image.setName("http://localhost:3000/assets/images/hipster.png");
+        image.setName("assets/images/hipster.png");
         return image;
     }
 

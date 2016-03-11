@@ -2,7 +2,7 @@
     <h2><span translate="jewelryApp.listItem.detail.title">Item</span> {{itemInformation.id}}</h2>
     <button type="submit"
             ui-sref="listItem.editItemInformation({id:itemInformation.id})"
-            class="btn btn-primary btn-sm">
+            class="btn btn-primary btn-sm" has-authority="ROLE_ADMIN">
         <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
     </button>
     <div>
@@ -75,6 +75,15 @@
             </table>
         </div>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary" ui-sref="item.new">
+                    <span class="glyphicon glyphicon-flash"></span> <span translate="jewelryApp.item.home.createLabel">Create a new Item</span>
+                </button>
+            </div>
+        </div>
+    </div>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -119,12 +128,12 @@
                 <td>
                     <button type="submit"
                             ui-sref="listItem.editItem({idItem:item.id})"
-                            class="btn btn-primary btn-sm">
+                            class="btn btn-primary btn-sm" has-authority="ROLE_ADMIN">
                         <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
                     </button>
                     <button type="submit"
                             ui-sref="item.delete({id:item.id})"
-                            class="btn btn-danger btn-sm">
+                            class="btn btn-danger btn-sm" has-authority="ROLE_ADMIN">
                         <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
                     </button>
                 </td>

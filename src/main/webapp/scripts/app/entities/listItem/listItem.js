@@ -126,7 +126,6 @@ angular.module('jewelryApp')
                     })
                 }]
             })
-
             .state('listItem.delete', {
                 parent: 'listItem',
                 url: '/{id}/delete',
