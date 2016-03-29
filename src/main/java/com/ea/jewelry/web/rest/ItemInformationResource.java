@@ -1,7 +1,6 @@
 package com.ea.jewelry.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.ea.jewelry.domain.Item;
 import com.ea.jewelry.domain.ItemInformation;
 import com.ea.jewelry.repository.ItemInformationRepository;
 import com.ea.jewelry.repository.ItemRepository;
@@ -53,10 +52,6 @@ public class ItemInformationResource {
         }
         if (itemInformation.getVip() == null) itemInformation.setVip(false);
         ItemInformation result = itemInformationRepository.save(itemInformation);
-        Item newItem = new Item();
-        newItem.setName("");
-        newItem.setItemInformation(result);
-        itemRepository.save(newItem);
         return ResponseEntity.created(new URI("/api/itemInformations/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("itemInformation", result.getId().toString()))
             .body(result);

@@ -2,7 +2,12 @@ package com.ea.jewelry.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.ea.jewelry.domain.PurchaseOrder;
+import com.ea.jewelry.domain.PurchaseOrderDetails;
+import com.ea.jewelry.repository.PurchaseOrderDetailsRepository;
 import com.ea.jewelry.repository.PurchaseOrderRepository;
+import com.ea.jewelry.service.PurchaseOrderService;
+import com.ea.jewelry.service.ShoppingCartService;
+import com.ea.jewelry.web.rest.dto.ShoppingCartCustomerDTO;
 import com.ea.jewelry.web.rest.util.HeaderUtil;
 import com.ea.jewelry.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -32,6 +37,15 @@ public class PurchaseOrderResource {
 
     @Inject
     private PurchaseOrderRepository purchaseOrderRepository;
+
+    @Inject
+    private PurchaseOrderService purchaseOrderService;
+
+    @Inject
+    private PurchaseOrderDetailsRepository purchaseOrderDetailsRepository;
+
+    @Inject
+    private ShoppingCartService shoppingCartService;
 
     /**
      * POST  /purchaseOrders -> Create a new purchaseOrder.
@@ -108,7 +122,56 @@ public class PurchaseOrderResource {
     @Timed
     public ResponseEntity<Void> deletePurchaseOrder(@PathVariable Long id) {
         log.debug("REST request to delete PurchaseOrder : {}", id);
+        PurchaseOrder purchaseOrder = purchaseOrderRepository.findOne(id);
+        List<PurchaseOrderDetails> purchaseOrderDetailsList = purchaseOrderDetailsRepository.findAllByPurchaseOrder(purchaseOrder);
+        purchaseOrderDetailsRepository.delete(purchaseOrderDetailsList);
         purchaseOrderRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("purchaseOrder", id.toString())).build();
+    }
+
+    /**
+     * POST  /purchaseOrders/placeOrder -> Create a new purchaseOrder with Shopping Cart.
+     */
+    @RequestMapping(value = "/purchaseOrders/placeOrder",
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<PurchaseOrder> placeOrder(@RequestBody ShoppingCartCustomerDTO shoppingCartCustomerDTO) throws URISyntaxException {
+        log.debug("REST request to save PurchaseOrder : {}", shoppingCartCustomerDTO);
+        PurchaseOrder result = purchaseOrderService.generatePurchaseOrderFromShoppingCart(shoppingCartCustomerDTO);
+        if (result != null) {
+            shoppingCartService.cleanShoppingCart();
+        }
+        return ResponseEntity.created(new URI("/api/purchaseOrders/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert("purchaseOrder", result.getId().toString()))
+            .body(result);
+    }
+
+    /**
+     * GET  /purchaseOrders/:id -> get the "id" purchaseOrder.
+     */
+    @RequestMapping(value = "/purchaseOrders/print/{id}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<PurchaseOrder> printPurchaseOrder(@PathVariable Long id) {
+        log.debug("REST request to get PurchaseOrder : {}", id);
+        return Optional.ofNullable(purchaseOrderRepository.findOne(id))
+            .map(purchaseOrder -> new ResponseEntity<>(
+                purchaseOrder,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+
+    /**
+     * GET  /purchaseOrders/:id -> get the "id" purchaseOrder.
+     */
+    @RequestMapping(value = "/purchaseOrders/test/{id}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public void test(@PathVariable Long id) {
+        log.debug("Test print PDF: {}", id);
     }
 }

@@ -5,6 +5,7 @@ import com.ea.jewelry.domain.Image;
 import com.ea.jewelry.domain.Item;
 import com.ea.jewelry.repository.ImageRepository;
 import com.ea.jewelry.repository.ItemRepository;
+import com.ea.jewelry.service.ImageService;
 import com.ea.jewelry.web.rest.util.HeaderUtil;
 import com.ea.jewelry.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -40,6 +41,9 @@ public class ItemResource {
 
     @Inject
     private ImageRepository imageRepository;
+
+    @Inject
+    private ImageService imageService;
 
     /**
      * POST  /items -> Create a new item.
@@ -117,6 +121,7 @@ public class ItemResource {
     @Timed
     public ResponseEntity<Void> deleteItem(@PathVariable Long id) {
         log.debug("REST request to delete Item : {}", id);
+        imageService.removeImageFromItem(itemRepository.findOne(id));
         itemRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("item", id.toString())).build();
     }

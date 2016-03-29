@@ -3,6 +3,8 @@ package com.ea.jewelry.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.ea.jewelry.domain.ShoppingCart;
 import com.ea.jewelry.repository.ShoppingCartRepository;
+import com.ea.jewelry.service.ShoppingCartService;
+import com.ea.jewelry.web.rest.dto.ShoppingCartCustomerDTO;
 import com.ea.jewelry.web.rest.util.HeaderUtil;
 import com.ea.jewelry.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -32,6 +34,9 @@ public class ShoppingCartResource {
 
     @Inject
     private ShoppingCartRepository shoppingCartRepository;
+
+    @Inject
+    private ShoppingCartService shoppingCartDetailsService;
 
     /**
      * POST  /shoppingCarts -> Create a new shoppingCart.
@@ -110,5 +115,41 @@ public class ShoppingCartResource {
         log.debug("REST request to delete ShoppingCart : {}", id);
         shoppingCartRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("shoppingCart", id.toString())).build();
+    }
+
+    /**
+     * GET  /shoppingCart/addToCart/:itemId -> Add Item to Shopping Cart
+     */
+    @RequestMapping(value = "/shoppingCart/addToCart/{itemId}/{quantity}",
+        method = RequestMethod.GET)
+    @Timed
+    public ResponseEntity<ShoppingCart> addItemToShoppingCart(@PathVariable Long itemId, @PathVariable Long quantity) {
+        log.debug("REST request to Add Item into Shopping Cart: {}", itemId);
+        ShoppingCart shoppingCart = shoppingCartDetailsService.addItemToShoppingCart(itemId, quantity);
+        return new ResponseEntity<>(shoppingCart,HttpStatus.OK);
+    }
+
+    /**
+     * GET  /shoppingCart/removeToCart/:itemId -> Add Item to Shopping Cart
+     */
+    @RequestMapping(value = "/shoppingCart/removeToCart/{itemId}/{quantity}",
+        method = RequestMethod.GET)
+    @Timed
+    public ResponseEntity<ShoppingCart> removeItemFromShoppingCart(@PathVariable Long itemId, @PathVariable Long quantity) {
+        log.debug("REST request to Add Item into Shopping Cart: {}", itemId);
+        ShoppingCart shoppingCart = shoppingCartDetailsService.addItemToShoppingCart(itemId, quantity);
+        return new ResponseEntity<>(shoppingCart,HttpStatus.OK);
+    }
+
+    /**
+     * GET  /shoppingCart/getCurrent -> Get current shopping cart items
+     */
+    @RequestMapping(value = "/shoppingCart/getCurrent",
+        method = RequestMethod.GET)
+    @Timed
+    public ResponseEntity<ShoppingCartCustomerDTO> getCurrent() {
+        log.debug("REST request to get current Shopping Cart for current user: {}");
+        ShoppingCartCustomerDTO shoppingCartCustomerDTO = shoppingCartDetailsService.getCurrent();
+        return new ResponseEntity<>(shoppingCartCustomerDTO,HttpStatus.OK);
     }
 }

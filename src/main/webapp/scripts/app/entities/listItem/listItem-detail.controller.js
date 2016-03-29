@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('jewelryApp')
-    .controller('ListItemDetailController', function ($scope, $rootScope, $stateParams, entity, ListItem) {
+    .controller('ListItemDetailController', function ($scope, $rootScope, $stateParams, entity, ListItem, ShoppingCartService) {
         $scope.itemInformation = entity;
 
         $scope.load = function (id) {
@@ -13,4 +13,8 @@ angular.module('jewelryApp')
             $scope.itemInformation = result;
         });
         $scope.$on('$destroy', unsubscribe);
+
+        $scope.sendToCart = function (item) {
+            ShoppingCartService.addItemIntoShoppingCart(item);
+        };
     });

@@ -1,0 +1,16 @@
+{
+    "jewelryApp": {
+        "shoppingCartCustomer" : {
+            "home": {
+                "title": "Shopping Cart"
+            },
+            "itemNumber": "Item Number",
+            "size": "Size",
+            "color": "Color",
+            "price": "Price",
+            "quantity": "Quantity",
+            "subtotal": "Subtotal",
+            "placeOrder": "Place order"
+        }
+    }
+}

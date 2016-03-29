@@ -50,35 +50,36 @@ angular.module('jewelryApp')
                     }]
                 }
             })
-            //.state('listItem.new', {
-            //    parent: 'entity',
-            //    url: '/new',
-            //    data: {
-            //        authorities: ['ROLE_USER'],
-            //    },
-            //    onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
-            //        $modal.open({
-            //            templateUrl: 'scripts/app/entities/listItem/listItem-dialog.html',
-            //            controller: 'ListItemDialogController',
-            //            size: 'lg',
-            //            resolve: {
-            //                entity: function () {
-            //                    return {
-            //                        itemNumber: null,
-            //                        vendorItemNumber: null,
-            //                        description: null,
-            //                        vip: null,
-            //                        id: null
-            //                    };
-            //                }
-            //            }
-            //        }).result.then(function(result) {
-            //            $state.go('listItem', null, { reload: true });
-            //        }, function() {
-            //            $state.go('listItem');
-            //        })
-            //    }]
-            //})
+            .state('listItemAdmin.new', {
+                parent: 'listItemAdmin',
+                url: '/new',
+                data: {
+                    authorities: ['ROLE_USER'],
+                },
+                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                    //debugger;
+                    $modal.open({
+                        templateUrl: 'scripts/app/admin/listItemAdmin/listItemAdmin-dialog.html',
+                        controller: 'ListItemAdminDialogController',
+                        size: 'lg',
+                        resolve: {
+                            entity: function () {
+                                return {
+                                    itemNumber: null,
+                                    vendorItemNumber: null,
+                                    description: null,
+                                    vip: null,
+                                    id: null
+                                };
+                            }
+                        }
+                    }).result.then(function(result) {
+                        $state.go('listItemAdmin', null, { reload: true });
+                    }, function() {
+                        $state.go('listItemAdmin');
+                    })
+                }]
+            })
             .state('listItemAdmin.editItemInformation', {
                 parent: 'listItemAdmin.detail',
                 url: '/editItemInformation',
@@ -96,7 +97,7 @@ angular.module('jewelryApp')
                             }]
                         }
                     }).result.then(function(result) {
-                        $state.go('listItem', null, { reload: true });
+                        $state.go('^', null, { reload: true });
                     }, function() {
                         $state.go('^');
                     })
@@ -152,28 +153,28 @@ angular.module('jewelryApp')
                         $state.go('^');
                     })
                 }]
+            })
+            .state('listItemAdmin.delete', {
+                parent: 'listItemAdmin.detail',
+                url: '/{idItem}/delete',
+                data: {
+                    authorities: ['ROLE_USER'],
+                },
+                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                    $modal.open({
+                        templateUrl: 'scripts/app/entities/item/item-delete-dialog.html',
+                        controller: 'ItemDeleteController',
+                        size: 'md',
+                        resolve: {
+                            entity: ['Item', function(Item) {
+                                return Item.get({id : $stateParams.idItem});
+                            }]
+                        }
+                    }).result.then(function(result) {
+                        $state.go('^', null, { reload: true });
+                    }, function() {
+                        $state.go('^');
+                    })
+                }]
             });
-            //.state('listItem.delete', {
-            //    parent: 'listItem',
-            //    url: '/{id}/delete',
-            //    data: {
-            //        authorities: ['ROLE_USER'],
-            //    },
-            //    onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
-            //        $modal.open({
-            //            templateUrl: 'scripts/app/entities/image/image-delete-dialog.html',
-            //            controller: 'ImageDeleteController',
-            //            size: 'md',
-            //            resolve: {
-            //                entity: ['Image', function(Image) {
-            //                    return Image.get({id : $stateParams.id});
-            //                }]
-            //            }
-            //        }).result.then(function(result) {
-            //            $state.go('image', null, { reload: true });
-            //        }, function() {
-            //            $state.go('^');
-            //        })
-            //    }]
-            //});
     });

@@ -26,7 +26,6 @@ angular.module('jewelryApp').controller('ItemInformationDialogController',
         };
 
         $scope.save = function () {
-            debugger;
             $scope.isSaving = true;
             if ($scope.itemInformation.id != null) {
                 ItemInformation.update($scope.itemInformation, onSaveSuccess, onSaveError);

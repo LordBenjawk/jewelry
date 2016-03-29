@@ -20,7 +20,10 @@
                 "tierOne": "Tier One",
                 "tierTwo": "Tier Two",
                 "tierThree": "Tier Three",
-                "vendorPrice": "Price Vendor"
+                "vendorPrice": "Price Vendor",
+                "status": "Status",
+                "quantity": "Quantity",
+                "cart": "Cart"
             },
             "itemNumber": "ItemNumber",
             "vendorItemNumber": "VendorItemNumber",

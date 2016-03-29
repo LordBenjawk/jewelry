@@ -77,25 +77,22 @@
         </div>
 
         <hr>
-        <h4 ng-click="test()">Images</h4>
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-6 thumb" >
-                <img class="img-responsive thumbnail" ng-src="{{image.name}}" ng-repeat="image in item.images"/>
+        <div ng-show="item.id">
+            <h4 ng-click="test()">Images</h4>
+            <div>
+                <label class="file-upload">
+                    <input id="file-upload" type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
+                    <span class="glyphicon glyphicon-cloud-upload"></span> Upload
+                </label>
             </div>
-            <div class="col-md-12" ng-if="item.images.length === 0">
-                <span >No Images yet!</span>
-            </div>
-        </div>
-        <div ng-show="uploader.isHTML5">
-            <!-- 3. nv-file-over uploader="link" over-class="className" -->
-            <div class="well my-drop-zone" nv-file-over="" uploader="uploader">
-                Base drop zone
-            </div>
+            <div class="row">
+                <div ng-repeat="image in item.images" class="thumbnail col-lg-6 col-md-6 col-sm-12">
+                    <button class="btn btn-link" ng-click="confirmDelete(image.id)">Delete</button>
+                    <img class="img-responsive" ng-src="images/{{image.name}}"  style="max-height:200px;"/>
+                </div>
 
-            <!-- Example: nv-file-drop="" uploader="{Object}" options="{Object}" filters="{String}" -->
-            <div nv-file-drop="" uploader="uploader" options="{ url: '/foo' }">
-                <div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone">
-                    Another drop zone with its own settings
+                <div class="col-md-12" ng-if="item.images.length === 0">
+                    <span >No Images yet!</span>
                 </div>
             </div>
         </div>

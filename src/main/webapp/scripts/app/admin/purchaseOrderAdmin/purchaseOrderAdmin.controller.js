@@ -1,22 +1,22 @@
 'use strict';
 
 angular.module('jewelryApp')
-    .controller('ShoppingCartDetailsController', function ($scope, $state, $modal, ShoppingCartDetails, ParseLinks) {
+    .controller('PurchaseOrderAdminController', function ($scope, $state, $modal, PurchaseOrder, ParseLinks) {
 
-        $scope.shoppingCartDetailss = [];
+        $scope.purchaseOrders = [];
         $scope.page = 0;
         $scope.loadAll = function() {
-            ShoppingCartDetails.query({page: $scope.page, size: 20}, function(result, headers) {
+            PurchaseOrder.query({page: $scope.page, size: 20}, function(result, headers) {
                 $scope.links = ParseLinks.parse(headers('link'));
-                $scope.shoppingCartDetailss = result;
+                $scope.purchaseOrders = result;
             });
         };
         $scope.loadPage = function(page) {
             $scope.page = page;
             $scope.loadAll();
         };
-
         $scope.loadAll();
+
 
         $scope.refresh = function () {
             $scope.loadAll();
@@ -24,7 +24,8 @@ angular.module('jewelryApp')
         };
 
         $scope.clear = function () {
-            $scope.shoppingCartDetails = {
+            $scope.purchaseOrder = {
+                purchaseOrderNumber: null,
                 id: null
             };
         };

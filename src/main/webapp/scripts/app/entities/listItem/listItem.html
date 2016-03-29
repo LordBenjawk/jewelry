@@ -1,33 +1,15 @@
 <div>
     <h2 translate="jewelryApp.listItem.home.title">Items</h2>
     <jh-alert></jh-alert>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4" has-authority="ROLE_ADMIN">
-                <button class="btn btn-primary" ui-sref="listItem.new">
-                    <span class="glyphicon glyphicon-flash"></span> <span translate="jewelryApp.listItem.home.createLabel">Create a new Item</span>
-                </button>
-            </div>
-        </div>
-    </div>
 
     <div class="table-responsive voffset2">
-
         <div class="row">
-
             <div class="col-lg-3 col-md-4 col-xs-6 thumb" ng-repeat="item in items track by item.id">
-
                 <a class="thumbnail" href="#" has-authority="ROLE_ADMIN">
                     {{item.id}}
-                    <img class="img-responsive" ng-src="{{item.image}}" alt="" ui-sref="listItem.detail({id:item.id})" >
+                    <img class="img-responsive" ng-src="images/{{item.image}}" alt="" ui-sref="listItem.detail({id:item.id})">
                 </a>
-
-                <!--<a class="thumbnail" href="#" has-authority="ROLE_CUSTOMER">-->
-                    <!--{{item.id}}-->
-                    <!--<img class="img-responsive" ng-src="{{item.image}}" alt="" ui-sref="listItem.detail-customer({id:item.id})" >-->
-                <!--</a>-->
             </div>
-
         </div>
 
         <nav>

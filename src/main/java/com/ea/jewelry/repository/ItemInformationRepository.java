@@ -1,8 +1,11 @@
 package com.ea.jewelry.repository;
 
 import com.ea.jewelry.domain.ItemInformation;
-
-import org.springframework.data.jpa.repository.*;
+import com.ea.jewelry.domain.Status;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -14,4 +17,5 @@ public interface ItemInformationRepository extends JpaRepository<ItemInformation
     @Query("select itemInformation from ItemInformation itemInformation where itemInformation.user.login = ?#{principal.username}")
     List<ItemInformation> findByUserIsCurrentUser();
 
+    Page<ItemInformation> findAllByStatus(Status status, Pageable pageable);
 }

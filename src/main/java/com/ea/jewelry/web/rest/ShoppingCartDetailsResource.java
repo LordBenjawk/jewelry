@@ -111,4 +111,5 @@ public class ShoppingCartDetailsResource {
         shoppingCartDetailsRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("shoppingCartDetails", id.toString())).build();
     }
+
 }

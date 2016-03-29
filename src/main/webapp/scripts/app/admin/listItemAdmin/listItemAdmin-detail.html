@@ -1,5 +1,5 @@
 <div>
-    <h2><span translate="jewelryApp.listItem.detail.title">Item</span> {{itemInformation.id}}</h2>
+    <h2><span translate="jewelryApp.listItem.detail.title">Item</span> {{itemInformation.itemNumber}}</h2>
     <button type="submit"
             ui-sref="listItemAdmin.editItemInformation({id:itemInformation.id})"
             class="btn btn-primary btn-sm" has-authority="ROLE_ADMIN">
@@ -15,6 +15,10 @@
                 </tr>
                 </thead>
                 <tbody>
+                <tr>
+                    <td><span>ID</span></td>
+                    <td><span><span class="form-control-static">{{itemInformation.id}}</span></span></td>
+                </tr>
                 <tr>
                     <td>
                         <span translate="jewelryApp.itemInformation.itemNumber">ItemNumber</span>
@@ -123,7 +127,7 @@
                     <span>{{item.price.vendorPrice}}</span>
                 </td>
                 <td>
-                    <img ng-src="{{image.name}}" ng-repeat="image in item.images" style="width:50px;height:50px;   "/>
+                    <img ng-src="images/{{image.name}}" ng-repeat="image in item.images" style="height:50px;"/>
                 </td>
                 <td>
                     <button type="submit"
@@ -132,7 +136,7 @@
                         <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
                     </button>
                     <button type="submit"
-                            ui-sref="item.delete({id:item.id})"
+                            ui-sref="listItemAdmin.delete({idItem:item.id})"
                             class="btn btn-danger btn-sm" has-authority="ROLE_ADMIN">
                         <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
                     </button>
@@ -143,7 +147,7 @@
     </div>
 
     <button type="submit"
-            ui-sref="listItem"
+            ui-sref="listItemAdmin"
             class="btn btn-info">
         <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
     </button>

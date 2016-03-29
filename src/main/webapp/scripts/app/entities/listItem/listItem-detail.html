@@ -1,146 +1,234 @@
 <div>
-    <h2><span translate="jewelryApp.listItem.detail.title">Item</span> {{itemInformation.id}}</h2>
-    <button type="submit"
-            ui-sref="listItem.editItemInformation({id:itemInformation.id})"
-            class="btn btn-primary btn-sm" has-authority="ROLE_ADMIN">
-        <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
-    </button>
-    <div>
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th translate="entity.detail.field">Field</th>
-                    <th translate="entity.detail.value">Value</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <span translate="jewelryApp.itemInformation.itemNumber">ItemNumber</span>
-                    </td>
-                    <td>
-                        <span class="form-control-static">{{itemInformation.itemNumber}}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span translate="jewelryApp.itemInformation.vendorItemNumber">VendorItemNumber</span>
-                    </td>
-                    <td>
-                        <span class="form-control-static">{{itemInformation.vendorItemNumber}}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span translate="jewelryApp.itemInformation.description">Description</span>
-                    </td>
-                    <td>
-                        <span class="form-control-static">{{itemInformation.description}}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span translate="jewelryApp.itemInformation.vip">Vip</span>
-                    </td>
-                    <td>
-                        <span class="form-control-static">{{itemInformation.vip}}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span translate="jewelryApp.itemInformation.user">user</span>
-                    </td>
-                    <td>
-                        {{itemInformation.user.login}}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span translate="jewelryApp.itemInformation.category">category</span>
-                    </td>
-                    <td>
-                        {{itemInformation.category.name}}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span translate="jewelryApp.itemInformation.status">status</span>
-                    </td>
-                    <td>
-                        {{itemInformation.status.name}}
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="container">
+    <h2><span translate="jewelryApp.listItem.detail.title">Item</span> {{itemInformation.itemNumber}}</h2>
+    <div ng-repeat="item in itemInformation.items">
+
         <div class="row">
-            <div class="col-md-4">
-                <button class="btn btn-primary" ui-sref="item.new">
-                    <span class="glyphicon glyphicon-flash"></span> <span translate="jewelryApp.item.home.createLabel">Create a new Item</span>
-                </button>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <img class="img-responsive" ng-src="images/{{image.name}}" alt="" ng-repeat="image in item.images">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="row">
+                    <div class="col-sm-11">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th translate="entity.detail.field">Field</th>
+                                    <th translate="entity.detail.value">Value</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <span translate="jewelryApp.listItem.detail.variant">Variant</span>
+                                    </td>
+                                    <td>
+                                        <span class="form-control-static">{{item.name}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span translate="jewelryApp.listItem.detail.size">Size</span>
+                                    </td>
+                                    <td>
+                                        <span class="form-control-static">{{item.size.name}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span translate="jewelryApp.listItem.detail.color">Color</span>
+                                    </td>
+                                    <td>
+                                        <span class="form-control-static">{{item.color.name}}</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span translate="jewelryApp.listItem.detail.tierOne">Price</span>
+                                    </td>
+                                    <td>
+                                        <span class="form-control-static">{{item.price.tierOne}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span translate="jewelryApp.listItem.detail.tierTwo">Price</span>
+                                    </td>
+                                    <td>
+                                        <span class="form-control-static">{{item.price.tierTwo}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span translate="jewelryApp.listItem.detail.tierThree">Price</span>
+                                    </td>
+                                    <td>
+                                        <span class="form-control-static">{{item.price.tierThree}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span translate="jewelryApp.listItem.detail.quantity">Quantity</span>
+                                    </td>
+                                    <td>
+                                        <input type="number" class="form-control js_quantity" min="0"
+                                               ng-model="item.quantity"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <button type="button"
+                                                class="btn btn-primary"
+                                                ng-click="sendToCart(item)">
+                                            <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;<span translate="jewelryApp.listItem.detail.cart">&nbsp;Cart&nbsp;</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th translate="jewelryApp.listItem.detail.variant">Variant</th>
-                <th translate="jewelryApp.listItem.detail.size">Size</th>
-                <th translate="jewelryApp.listItem.detail.color">Color</th>
-                <th translate="jewelryApp.listItem.detail.tierOne">Tier One</th>
-                <th translate="jewelryApp.listItem.detail.tierTwo">Tier Two</th>
-                <th translate="jewelryApp.listItem.detail.tierThree">Tier Three</th>
-                <th translate="jewelryApp.listItem.detail.vendorPrice">Vendor Price</th>
-                <th></th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="item in itemInformation.items">
-                <td>
-                    <span> {{item.name}} </span>
-                </td>
-                <td>
-                    <span>{{item.size.name}}</span>
-                </td>
-                <td>
-                    <span>{{item.color.name}}</span>
-                </td>
-                <td>
-                    <span>{{item.price.tierOne}}</span>
-                </td>
-                <td>
-                    <span>{{item.price.tierTwo}}</span>
-                </td>
-                <td>
-                    <span>{{item.price.tierThree}}</span>
-                </td>
-                <td>
-                    <span>{{item.price.vendorPrice}}</span>
-                </td>
-                <td>
-                    <img ng-src="{{image.name}}" ng-repeat="image in item.images" style="width:50px;height:50px;   "/>
-                </td>
-                <td>
-                    <button type="submit"
-                            ui-sref="listItem.editItem({idItem:item.id})"
-                            class="btn btn-primary btn-sm" has-authority="ROLE_ADMIN">
-                        <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
-                    </button>
-                    <button type="submit"
-                            ui-sref="item.delete({id:item.id})"
-                            class="btn btn-danger btn-sm" has-authority="ROLE_ADMIN">
-                        <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
-                    </button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+
+
+
+
+
+    <!-- SEPARATOR -->
+
+    <!--<div>-->
+        <!--<div class="table-responsive">-->
+            <!--<table class="table table-striped">-->
+                <!--<thead>-->
+                <!--<tr>-->
+                    <!--<th translate="entity.detail.field">Field</th>-->
+                    <!--<th translate="entity.detail.value">Value</th>-->
+                <!--</tr>-->
+                <!--</thead>-->
+                <!--<tbody>-->
+                <!--<tr>-->
+                    <!--<td>-->
+                        <!--<span translate="jewelryApp.itemInformation.itemNumber">ItemNumber</span>-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--<span class="form-control-static">{{itemInformation.itemNumber}}</span>-->
+                    <!--</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>-->
+                        <!--<span translate="jewelryApp.itemInformation.vendorItemNumber">VendorItemNumber</span>-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--<span class="form-control-static">{{itemInformation.vendorItemNumber}}</span>-->
+                    <!--</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>-->
+                        <!--<span translate="jewelryApp.itemInformation.description">Description</span>-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--<span class="form-control-static">{{itemInformation.description}}</span>-->
+                    <!--</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>-->
+                        <!--<span translate="jewelryApp.itemInformation.vip">Vip</span>-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--<span class="form-control-static">{{itemInformation.vip}}</span>-->
+                    <!--</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>-->
+                        <!--<span translate="jewelryApp.itemInformation.user">user</span>-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--{{itemInformation.user.login}}-->
+                    <!--</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>-->
+                        <!--<span translate="jewelryApp.itemInformation.category">category</span>-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--{{itemInformation.category.name}}-->
+                    <!--</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>-->
+                        <!--<span translate="jewelryApp.itemInformation.status">status</span>-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--{{itemInformation.status.name}}-->
+                    <!--</td>-->
+                <!--</tr>-->
+                <!--</tbody>-->
+            <!--</table>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="table-responsive">-->
+        <!--<table class="table table-striped">-->
+            <!--<thead>-->
+            <!--<tr>-->
+                <!--<th translate="jewelryApp.listItem.detail.variant">Variant</th>-->
+                <!--<th translate="jewelryApp.listItem.detail.size">Size</th>-->
+                <!--<th translate="jewelryApp.listItem.detail.color">Color</th>-->
+                <!--<th translate="jewelryApp.listItem.detail.tierOne">Tier One</th>-->
+                <!--<th translate="jewelryApp.listItem.detail.tierTwo">Tier Two</th>-->
+                <!--<th translate="jewelryApp.listItem.detail.tierThree">Tier Three</th>-->
+                <!--<th translate="jewelryApp.listItem.detail.vendorPrice">Vendor Price</th>-->
+                <!--<th></th>-->
+                <!--<th></th>-->
+            <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody>-->
+            <!--<tr ng-repeat="item in itemInformation.items">-->
+                <!--<td>-->
+                    <!--<span> {{item.name}} </span>-->
+                <!--</td>-->
+                <!--<td>-->
+                    <!--<span>{{item.size.name}}</span>-->
+                <!--</td>-->
+                <!--<td>-->
+                    <!--<span>{{item.color.name}}</span>-->
+                <!--</td>-->
+                <!--<td>-->
+                    <!--<span>{{item.price.tierOne}}</span>-->
+                <!--</td>-->
+                <!--<td>-->
+                    <!--<span>{{item.price.tierTwo}}</span>-->
+                <!--</td>-->
+                <!--<td>-->
+                    <!--<span>{{item.price.tierThree}}</span>-->
+                <!--</td>-->
+                <!--<td>-->
+                    <!--<span>{{item.price.vendorPrice}}</span>-->
+                <!--</td>-->
+                <!--<td>-->
+                    <!--<img ng-src="images/{{image.name}}" ng-repeat="image in item.images" style="width:50px;height:50px;   "/>-->
+                <!--</td>-->
+                <!--<td>-->
+                    <!--<button type="submit"-->
+                            <!--ui-sref="listItem.editItem({idItem:item.id})"-->
+                            <!--class="btn btn-primary btn-sm" has-authority="ROLE_ADMIN">-->
+                        <!--<span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>-->
+                    <!--</button>-->
+                    <!--<button type="submit"-->
+                            <!--ui-sref="item.delete({id:item.id})"-->
+                            <!--class="btn btn-danger btn-sm" has-authority="ROLE_ADMIN">-->
+                        <!--<span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>-->
+                    <!--</button>-->
+                <!--</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+        <!--</table>-->
+    <!--</div>-->
 
     <button type="submit"
             ui-sref="listItem"

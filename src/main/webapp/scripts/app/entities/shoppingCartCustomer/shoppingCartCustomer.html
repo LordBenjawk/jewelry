@@ -1,0 +1,79 @@
+<div>
+    <h2 translate="jewelryApp.shoppingCartCustomer.home.title" ng-click="test()">Shopping Cart</h2>
+    <jh-alert></jh-alert>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="jewelryApp.shoppingCartCustomer.itemNumber">Item Number</th>
+                    <th translate="jewelryApp.shoppingCartCustomer.size">Size</th>
+                    <th translate="jewelryApp.shoppingCartCustomer.color">Color</th>
+                    <th translate="jewelryApp.shoppingCartCustomer.price">Price</th>
+                    <th translate="jewelryApp.shoppingCartCustomer.quantity">Quantity</th>
+                    <th translate="jewelryApp.shoppingCartCustomer.subtotal">Subtotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="shoppingItem in shoppingCartDetails.shoppingCartDetailsList track by shoppingItem.item.id">
+                    <td>
+                        {{shoppingItem.item.itemInformation.itemNumber}}
+                    </td>
+
+                    <td>
+                        {{shoppingItem.item.size.name}}
+                    </td>
+
+                    <td>
+                        {{shoppingItem.item.color.name}}
+                    </td>
+
+                    <td>
+                        {{getCurrentPriceTier(shoppingItem.item.price)}}
+                    </td>
+
+                    <td>
+                        {{shoppingItem.quantity}}
+                    </td>
+
+                    <td>
+                        {{shoppingItem.quantity * 1}}
+                    </td>
+
+                    <td>
+                        <button type="button"
+                                ui-sref="shoppingCart.delete({id:shoppingCart.id})"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5" align="right" class="bold">Total</td>
+                    <td class="bold">${{shoppingCartDetails.totalPrice}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button type="button"
+                class="btn btn-primary"
+                ng-click="placeOrder()">
+            <span class="glyphicon glyphicon-cloud-upload"></span>&nbsp;
+            <span translate="jewelryApp.shoppingCartCustomer.placeOrder">Place order</span>
+        </button>
+        <!--<nav>-->
+            <!--<ul class="pagination">-->
+                <!--<li ng-show="links['first'] >= 0" ng-click="loadPage(links['first'])"><a>&lt;&lt;</a></li>-->
+                <!--<li ng-show="page > 0" ng-click="loadPage(links['prev'] || 0)"><a>&lt;</a></li>-->
+                <!--<li ng-show="page > 1" ng-click="loadPage(page - 2)"><a>{{page - 1}}</a></li>-->
+                <!--<li ng-show="page > 0" ng-click="loadPage(page - 1)"><a>{{page}}</a></li>-->
+                <!--<li class="active"><a>{{page + 1}}</a></li>-->
+                <!--<li ng-show="page < links['last']" ng-click="loadPage(page + 1)"><a>{{page + 2}}</a></li>-->
+                <!--<li ng-show="page < links['last'] - 1" ng-click="loadPage(page + 2)"><a>{{page + 3}}</a></li>-->
+                <!--<li ng-show="links['next']" ng-click="loadPage(links['next'])"><a>&gt;</a></li>-->
+                <!--<li ng-show="links['last'] > 0" ng-click="loadPage(links['last'])"><a>&gt;&gt;</a></li>-->
+            <!--</ul>-->
+        <!--</nav>-->
+    </div>
+</div>
