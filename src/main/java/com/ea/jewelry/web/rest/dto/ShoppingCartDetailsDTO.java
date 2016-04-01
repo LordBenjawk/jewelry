@@ -11,7 +11,7 @@ public class ShoppingCartDetailsDTO {
 
     public ShoppingCartDetailsDTO(Item item) {
         this.item = item;
-        quantity = 1;
+        this.quantity = 1;
     }
 
     public Item getItem() {

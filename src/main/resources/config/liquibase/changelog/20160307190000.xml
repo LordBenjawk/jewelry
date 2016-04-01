@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<changeSet author="eamezcua" id="addPurchaseOrderDate">
+    <addColumn
+        table="purchase_order"
+        schemaName="public"
+        catalogName="jewelry">
+        <column name="created_date" type="date"/>
+    </addColumn>
+</changeSet>

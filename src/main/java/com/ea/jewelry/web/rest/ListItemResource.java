@@ -113,7 +113,7 @@ public class ListItemResource {
         Image image = imageService.createImage();
         Item item = imageService.setImageToItem(image, id);
         item = cleanupItem(item);
-        String itemDirectoryPath = FileManagementUtil.generateImageFolderWithItemPath(applicationPath, item.getId(), image.getId());
+        String itemDirectoryPath = FileManagementUtil.generateItemImageFolder(applicationPath, item.getId(), image.getId());
         boolean imageTransferStatus = FileManagementUtil.transferMultiPartToImages(file, itemDirectoryPath, "full");
 
         if (!imageTransferStatus) {

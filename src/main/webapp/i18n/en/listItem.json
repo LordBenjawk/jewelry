@@ -23,7 +23,8 @@
                 "vendorPrice": "Price Vendor",
                 "status": "Status",
                 "quantity": "Quantity",
-                "cart": "Cart"
+                "cart": "Cart",
+                "createVariant": "Create a new Variant"
             },
             "itemNumber": "ItemNumber",
             "vendorItemNumber": "VendorItemNumber",

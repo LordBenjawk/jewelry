@@ -2,6 +2,7 @@ package com.ea.jewelry.service;
 
 import com.ea.jewelry.domain.*;
 import com.ea.jewelry.repository.*;
+import com.ea.jewelry.service.helper.ItemPriceHelper;
 import com.ea.jewelry.web.rest.dto.ShoppingCartCustomerDTO;
 import com.ea.jewelry.web.rest.dto.ShoppingCartDetailsDTO;
 import org.slf4j.Logger;
@@ -60,7 +61,7 @@ public class ShoppingCartService {
         ShoppingCart shoppingCart = selectCorrectShoppingCart(shoppingCartList);
         List<ShoppingCartDetails> shoppingCartDetailsList = shoppingCartDetailsRepository.findByShoppingCart(shoppingCart);
         UserInformation userInformation = userInformationRepository.findByUserIsCurrentUser();
-        ShoppingCartCustomerDTO shoppingCartCustomerDTO = countItemsAndOrder(shoppingCartDetailsList,userInformation);
+        ShoppingCartCustomerDTO shoppingCartCustomerDTO = mapToShoppingCartDTO(shoppingCartDetailsList,userInformation);
         shoppingCartCustomerDTO.setTotalPrice(calculateShoppingCartTotal(shoppingCartCustomerDTO));
         return shoppingCartCustomerDTO;
     }
@@ -93,8 +94,8 @@ public class ShoppingCartService {
         return shoppingCart;
     }
 
-    private ShoppingCartCustomerDTO countItemsAndOrder(List<ShoppingCartDetails> shoppingCartDetailsList,
-                                                       UserInformation userInformation) {
+    private ShoppingCartCustomerDTO mapToShoppingCartDTO(List<ShoppingCartDetails> shoppingCartDetailsList,
+                                                         UserInformation userInformation) {
         ShoppingCartCustomerDTO shoppingCartCustomerDTO = new ShoppingCartCustomerDTO();
         shoppingCartCustomerDTO.setUserInformation(userInformation);
         List<ShoppingCartDetailsDTO> shoppingCartDetailsDTOList = shoppingCartCustomerDTO.getShoppingCartDetailsList();
@@ -136,28 +137,10 @@ public class ShoppingCartService {
             ShoppingCartDetailsDTO detailsDTO = shoppingCartDetailsDTOList.get(i);
             Price price = detailsDTO.getItem().getPrice();
             int quantity = detailsDTO.getQuantity();
-            Double itemPrice = getPriceFromItem(price,priceTier);
+            Double itemPrice = ItemPriceHelper.getPriceWithPriceTier(price,priceTier);
             total += itemPrice * quantity;
         }
 
         return total;
-    }
-
-    private Double getPriceFromItem(Price price, int priceTier) {
-        Double actualPrice;
-        switch (priceTier) {
-            case 1:
-                actualPrice =  price.getTierOne();
-                break;
-            case 2:
-                actualPrice =  price.getTierTwo();
-                break;
-            case 3:
-                actualPrice =  price.getTierThree();
-                break;
-            default:
-                actualPrice =  0.0;
-        }
-        return actualPrice;
     }
 }

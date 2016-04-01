@@ -6,9 +6,10 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A PurchaseOrder.
@@ -37,6 +38,9 @@ public class PurchaseOrder implements Serializable {
     @ManyToOne
     @JoinColumn(name = "status_id")
     private Status status;
+
+    @Column(name = "created_at")
+    private Date createdAt;
 
     public Long getId() {
         return id;
@@ -76,6 +80,14 @@ public class PurchaseOrder implements Serializable {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override

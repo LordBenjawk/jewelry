@@ -4,15 +4,17 @@ import com.ea.jewelry.domain.*;
 import com.ea.jewelry.repository.PurchaseOrderDetailsRepository;
 import com.ea.jewelry.repository.PurchaseOrderRepository;
 import com.ea.jewelry.repository.StatusRepository;
+import com.ea.jewelry.repository.UserInformationRepository;
+import com.ea.jewelry.web.rest.dto.PurchaseOrderDetailsReportDTO;
+import com.ea.jewelry.web.rest.dto.PurchaseOrderReportDTO;
 import com.ea.jewelry.web.rest.dto.ShoppingCartCustomerDTO;
 import com.ea.jewelry.web.rest.dto.ShoppingCartDetailsDTO;
+import com.ea.jewelry.web.rest.util.FileManagementUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @Transactional
@@ -27,6 +29,11 @@ public class PurchaseOrderService {
     @Inject
     private PurchaseOrderDetailsRepository purchaseOrderDetailsRepository;
 
+    @Inject
+    private UserInformationRepository userInformationRepository;
+
+    private PurchaseOrderPDFService purchaseOrderPDFService;
+
     private final String statusNew = "Available";
 
     public PurchaseOrder generatePurchaseOrderFromShoppingCart(ShoppingCartCustomerDTO shoppingCartCustomerDTO) {
@@ -38,9 +45,33 @@ public class PurchaseOrderService {
         purchaseOrder.setStatus(status);
         purchaseOrder.setUser(user);
         purchaseOrder.setPurchaseOrderDetailss(purchaseOrderDetailsSet);
+        purchaseOrder.setCreatedAt(new Date());
         purchaseOrderRepository.save(purchaseOrder);
         purchaseOrderDetailsRepository.save(purchaseOrderDetailsSet);
         return purchaseOrder;
+    }
+
+
+    @Transactional(readOnly = true)
+    public boolean generatePurchaseOrderReports(String applicationPath, PurchaseOrder purchaseOrder) {
+        boolean result = Boolean.FALSE;
+        String purchaseOrderReportsPath = FileManagementUtil.generatePurchaseOrderReportPath(
+            applicationPath,
+            purchaseOrder.getId());
+        PurchaseOrderReportDTO purchaseOrderReportDTO = mapToPurchaseOrderReportDTO(purchaseOrder);
+        purchaseOrderPDFService = new PurchaseOrderPDFService(purchaseOrderReportsPath, purchaseOrderReportDTO);
+
+        // G admin report
+        boolean adminReport = purchaseOrderPDFService.createAdminReport();
+        // G vendor report
+        boolean vendorReport = purchaseOrderPDFService.createVendorReport();
+        // G admin_vendor report
+        boolean adminSeparatedVendorReport = purchaseOrderPDFService.createAdminSeparatedVendorReport();
+
+        if (adminReport && vendorReport && adminSeparatedVendorReport) {
+            result = Boolean.TRUE;
+        }
+        return result;
     }
 
     private Set<PurchaseOrderDetails> generatePurchaseOrderDetailsFromShoppingCart(List<ShoppingCartDetailsDTO> shoppingCartDetailsDTOList,
@@ -60,5 +91,61 @@ public class PurchaseOrderService {
         });
 
         return purchaseOrderDetailsSet;
+    }
+
+    private PurchaseOrderReportDTO mapToPurchaseOrderReportDTO(PurchaseOrder purchaseOrder) {
+        UserInformation userInformation = userInformationRepository.findOneByUser(purchaseOrder.getUser());
+        List<PurchaseOrderDetails> purchaseOrderDetailsList= new ArrayList<>();
+        List<PurchaseOrderDetailsReportDTO> purchaseOrderDetailsReportDTOList;
+        String status = purchaseOrder.getStatus().getName();
+        String createdAt = purchaseOrder.getCreatedAt().toString().substring(0,10);
+
+        purchaseOrderDetailsList.addAll(purchaseOrder.getPurchaseOrderDetailss());
+        purchaseOrderDetailsReportDTOList = mapToPurchaseOrderDetailsToDTO(purchaseOrderDetailsList,userInformation);
+        PurchaseOrderReportDTO purchaseOrderReportDTO = new PurchaseOrderReportDTO();
+        purchaseOrderReportDTO.setUserInformation(userInformation);
+        purchaseOrderReportDTO.setPurchaseOrderDetailsReportDTOList(purchaseOrderDetailsReportDTOList);
+
+        Double totalPrice = 0.0;
+        for (int i = 0; i < purchaseOrderDetailsReportDTOList.size(); i++) {
+            totalPrice += purchaseOrderDetailsReportDTOList.get(i).getSubtotal();
+        }
+        purchaseOrderReportDTO.setTotalPrice(totalPrice);
+        purchaseOrderReportDTO.setPurchaseOrderNumber(purchaseOrder.getId().toString());
+        purchaseOrderReportDTO.setPurchaseOrderDate(createdAt);
+        purchaseOrderReportDTO.setStatus(status);
+        return purchaseOrderReportDTO;
+    }
+
+    private List<PurchaseOrderDetailsReportDTO> mapToPurchaseOrderDetailsToDTO(
+                List<PurchaseOrderDetails> purchaseOrderDetailsList,
+                UserInformation userInformation) {
+        List<PurchaseOrderDetailsReportDTO> purchaseOrderDetailsReportDTOList = new ArrayList<>();
+        purchaseOrderDetailsList.forEach(purchaseOrderDetails -> {
+            Set<Item> itemSet = purchaseOrderDetails.getItems();
+            Iterator iterator = itemSet.iterator();
+            Item purchaseOrderItem = (Item) iterator.next();
+            int priceTier = userInformation.getPriceTier();
+
+            if (purchaseOrderDetailsReportDTOList.isEmpty()) {
+                purchaseOrderDetailsReportDTOList.add(new PurchaseOrderDetailsReportDTO(purchaseOrderItem,priceTier));
+            } else {
+                int dtoListSize = purchaseOrderDetailsReportDTOList.size();
+                boolean isItemEquals = Boolean.FALSE;
+                for (int j = 0; j < dtoListSize; j++) {
+                    PurchaseOrderDetailsReportDTO purchaseOrderDetailsReportDTO = purchaseOrderDetailsReportDTOList.get(j);
+                    isItemEquals = purchaseOrderDetailsReportDTO.getItem().equals(purchaseOrderItem);
+
+                    if(isItemEquals) {
+                        purchaseOrderDetailsReportDTO.addItem();
+                    }
+                }
+
+                if (!isItemEquals) {
+                    purchaseOrderDetailsReportDTOList.add(new PurchaseOrderDetailsReportDTO(purchaseOrderItem,priceTier));
+                }
+            }
+        });
+        return purchaseOrderDetailsReportDTOList;
     }
 }

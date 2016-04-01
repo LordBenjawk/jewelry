@@ -18,13 +18,17 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * REST controller for managing PurchaseOrder.
@@ -59,6 +63,7 @@ public class PurchaseOrderResource {
         if (purchaseOrder.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new purchaseOrder cannot already have an ID").body(null);
         }
+        purchaseOrder.setCreatedAt(new Date());
         PurchaseOrder result = purchaseOrderRepository.save(purchaseOrder);
         return ResponseEntity.created(new URI("/api/purchaseOrders/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("purchaseOrder", result.getId().toString()))
@@ -123,7 +128,7 @@ public class PurchaseOrderResource {
     public ResponseEntity<Void> deletePurchaseOrder(@PathVariable Long id) {
         log.debug("REST request to delete PurchaseOrder : {}", id);
         PurchaseOrder purchaseOrder = purchaseOrderRepository.findOne(id);
-        List<PurchaseOrderDetails> purchaseOrderDetailsList = purchaseOrderDetailsRepository.findAllByPurchaseOrder(purchaseOrder);
+        Set<PurchaseOrderDetails> purchaseOrderDetailsList = purchaseOrderDetailsRepository.findAllByPurchaseOrder(purchaseOrder);
         purchaseOrderDetailsRepository.delete(purchaseOrderDetailsList);
         purchaseOrderRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("purchaseOrder", id.toString())).build();
@@ -163,7 +168,7 @@ public class PurchaseOrderResource {
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-
+    public static final String DEST = "results/tables/simple_table.pdf";
     /**
      * GET  /purchaseOrders/:id -> get the "id" purchaseOrder.
      */
@@ -171,7 +176,15 @@ public class PurchaseOrderResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public void test(@PathVariable Long id) {
+    @Transactional(readOnly = true)
+    public void test(@PathVariable Long id,HttpServletRequest request) {
         log.debug("Test print PDF: {}", id);
+        String applicationPath = request.getServletContext().getRealPath("");
+
+        PurchaseOrder purchaseOrder = purchaseOrderRepository.findOne(id);
+        Set<PurchaseOrderDetails> purchaseOrderDetailsList = purchaseOrderDetailsRepository.findAllByPurchaseOrder(purchaseOrder);
+        purchaseOrder.setPurchaseOrderDetailss(purchaseOrderDetailsList);
+        boolean isReportValid = purchaseOrderService.generatePurchaseOrderReports(applicationPath, purchaseOrder);
+        log.debug(isReportValid + "");
     }
 }

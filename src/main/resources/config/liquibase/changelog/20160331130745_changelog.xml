@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="enriqueamezcua (generated)" id="1459451286422-1">
+        <dropSequence sequenceName="category_id_seq"/>
+    </changeSet>
+    <changeSet author="enriqueamezcua (generated)" id="1459451286422-2">
+        <dropSequence sequenceName="color_id_seq"/>
+    </changeSet>
+    <changeSet author="enriqueamezcua (generated)" id="1459451286422-3">
+        <dropSequence sequenceName="image_id_seq"/>
+    </changeSet>
+    <changeSet author="enriqueamezcua (generated)" id="1459451286422-4">
+        <dropSequence sequenceName="item_id_seq"/>
+    </changeSet>
+    <changeSet author="enriqueamezcua (generated)" id="1459451286422-5">
+        <dropSequence sequenceName="item_information_id_seq"/>
+    </changeSet>
+    <changeSet author="enriqueamezcua (generated)" id="1459451286422-6">
+        <dropSequence sequenceName="jhi_persistent_audit_event_event_id_seq"/>
+    </changeSet>
+    <changeSet author="enriqueamezcua (generated)" id="1459451286422-7">
+        <dropSequence sequenceName="jhi_user_id_seq"/>
+    </changeSet>
+    <changeSet author="enriqueamezcua (generated)" id="1459451286422-8">
+        <dropSequence sequenceName="price_id_seq"/>
+    </changeSet>
+    <changeSet author="enriqueamezcua (generated)" id="1459451286422-9">
+        <dropSequence sequenceName="purchase_order_details_id_seq"/>
+    </changeSet>
+    <changeSet author="enriqueamezcua (generated)" id="1459451286422-10">
+        <dropSequence sequenceName="purchase_order_id_seq"/>
+    </changeSet>
+    <changeSet author="enriqueamezcua (generated)" id="1459451286422-11">
+        <dropSequence sequenceName="shopping_cart_details_id_seq"/>
+    </changeSet>
+    <changeSet author="enriqueamezcua (generated)" id="1459451286422-12">
+        <dropSequence sequenceName="shopping_cart_id_seq"/>
+    </changeSet>
+    <changeSet author="enriqueamezcua (generated)" id="1459451286422-13">
+        <dropSequence sequenceName="size_id_seq"/>
+    </changeSet>
+    <changeSet author="enriqueamezcua (generated)" id="1459451286422-14">
+        <dropSequence sequenceName="status_id_seq"/>
+    </changeSet>
+    <changeSet author="enriqueamezcua (generated)" id="1459451286422-15">
+        <dropSequence sequenceName="user_information_id_seq"/>
+    </changeSet>
+    <changeSet author="enriqueamezcua (generated)" id="1459451286422-16">
+        <dropUniqueConstraint constraintName="user_information_user_id_key" tableName="user_information"/>
+    </changeSet>
+    <changeSet author="enriqueamezcua (generated)" id="1459451286422-17">
+        <dropNotNullConstraint columnDataType="boolean" columnName="vip" tableName="item_information"/>
+    </changeSet>
+</databaseChangeLog>
