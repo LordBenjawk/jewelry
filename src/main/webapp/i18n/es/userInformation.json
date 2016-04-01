@@ -1,0 +1,23 @@
+{
+    "jewelryApp": {
+        "userInformation" : {
+            "home": {
+                "title": "Informaci&oacute;nDeUsuario",
+                "createLabel": "Crea una nueva Informaci&oacute;nDeUsuario",
+                "createOrEditLabel": "Crea o edita una Informaci&oacute;nDeUsuario"
+            },
+            "created": "Una nueva Informaci&oacute;nDeUsuario es creada con identificador {{ param }}",
+            "updated": "Una Informaci&oacute;nDeUsuario es actualizada con identificador {{ param }}",
+            "deleted": "Una Informaci&oacute;nDeUsuario es borrada con identificador {{ param }}",
+            "delete": {
+                "question": "¿Estas seguro que quieres borrar la Informaci&oacute;nDeUsuario{{ id }}?"
+            },
+            "detail": {
+                "title": "Informaci&oacute;nDeUsuario"
+            },
+            "priceTier": "Tier de Precio",
+            "vip": "Vip",
+            "user": "Usuario"
+        }
+    }
+}
