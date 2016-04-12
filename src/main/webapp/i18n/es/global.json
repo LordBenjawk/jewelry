@@ -18,6 +18,8 @@
                 "register": "Crear una cuenta"
             },
             "admin": {
+                "purchaseOrders": "Ordenes de Compra",
+                "items": "&iacute;tems",
                 "main": "Administración",
                 "user-management": "Gestión de usuarios",
                 "tracker": "Registro de los usuarios",
@@ -28,6 +30,13 @@
                 "audits": "Auditorías",
                 "apidocs": "API",
                 "database": "Base de datos"
+            },
+
+            "customer": {
+                "main": "Comprador"
+            },
+            "vendor": {
+                "main": "Vendedor"
             },
             "language": "Idioma"
         },

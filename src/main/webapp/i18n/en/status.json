@@ -2,7 +2,7 @@
     "jewelryApp": {
         "status" : {
             "home": {
-                "title": "Statuss",
+                "title": "Status",
                 "createLabel": "Create a new Status",
                 "createOrEditLabel": "Create or edit a Status"
             },

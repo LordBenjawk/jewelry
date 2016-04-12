@@ -34,7 +34,7 @@
 
         <div class="form-group">
             <label translate="jewelryApp.category.status" for="field_status">status</label>
-            <select class="form-control" id="field_status" name="status" ng-model="category.status" ng-options="status as status.id for status in statuss track by status.id">
+            <select class="form-control" id="field_status" name="status" ng-model="category.status" ng-options="status as status.name for status in statuss track by status.id">
                 <option value=""></option>
             </select>
         </div>
