@@ -6,6 +6,19 @@
             "home": "Inicio",
             "entities": {
                 "main": "Entidades",
+                "userInformation": "Información de Usuario",
+                "status": "Estatus",
+                "category": "Categor&iacute;a",
+                "itemInformation": "Información de &Iacute;tem",
+                "price": "Precio",
+                "size": "Tamaño",
+                "color": "Color",
+                "purchaseOrder": "Orden de Compra",
+                "item": "&Iacute;tem",
+                "purchaseOrderDetails": "Detalles de Orden de Compra",
+                "image": "Imagen",
+                "shoppingCart": "Carrito de Compras",
+                "shoppingCartDetails": "Detalles de Carrito de Compra",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
