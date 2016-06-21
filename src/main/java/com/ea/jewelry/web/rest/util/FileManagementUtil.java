@@ -40,6 +40,11 @@ public class FileManagementUtil {
             imageId + File.separator;
     }
 
+    public static String generatePurchaseOrderReportPath(String applicationPath) {
+        return applicationPath + REPORTS_FOLDER + File.separator +
+            PURCHASE_ORDER_FOLDER + File.separator;
+    }
+
     public static String generatePurchaseOrderReportPath(String applicationPath, Long purchaseOrderId) {
         return applicationPath + REPORTS_FOLDER + File.separator +
             PURCHASE_ORDER_FOLDER + File.separator
@@ -56,22 +61,22 @@ public class FileManagementUtil {
         return result;
     }
 
-    public static File createDirectoryAndFile(String filePath, String fileName) {
-        String filePathToCreate = filePath + fileName;
-        File pathToCreate = new File(filePath);
-        File fileToCreate = new File(filePathToCreate);
-        boolean isPathCreated = createDirectoryIfNotExists(pathToCreate);
-        boolean isFileCreated = createFileInDirectoryIfNotExists(fileToCreate);
-
-        if (!isPathCreated && !isFileCreated) {
-            throw new RuntimeException();
-
-        }
-
-        return fileToCreate;
+    public static boolean directoryExists(String path) {
+        return new File(path).exists();
     }
 
-    private static boolean createFileInDirectoryIfNotExists(File file) {
+    public static File createDirectory(String directoryPath) {
+        File directoryFolder = new File(directoryPath);
+        boolean isDirectoryCreated = createDirectoryIfNotExists(directoryFolder);
+
+        if (!isDirectoryCreated) {
+            throw new RuntimeException();
+        }
+
+        return directoryFolder;
+    }
+
+    private static boolean createFileIfNotExists(File file) {
         boolean isValid = Boolean.TRUE;
 
         if ( !file.exists() ) {
@@ -83,7 +88,6 @@ public class FileManagementUtil {
                 log.debug("Error creating file: " + file.getAbsolutePath());
             }
         }
-
         return isValid;
     }
 
@@ -100,8 +104,8 @@ public class FileManagementUtil {
                 log.debug("Error creating directory: " + directory.getAbsolutePath());
             }
         }
-
         return isValid;
     }
+
 
 }

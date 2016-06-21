@@ -126,18 +126,32 @@ public class ShoppingCartResource {
     public ResponseEntity<ShoppingCart> addItemToShoppingCart(@PathVariable Long itemId, @PathVariable Long quantity) {
         log.debug("REST request to Add Item into Shopping Cart: {}", itemId);
         ShoppingCart shoppingCart = shoppingCartDetailsService.addItemToShoppingCart(itemId, quantity);
-        return new ResponseEntity<>(shoppingCart,HttpStatus.OK);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert("shoppingCart", itemId.toString()))
+            .body(shoppingCart);
     }
 
     /**
      * GET  /shoppingCart/removeToCart/:itemId -> Add Item to Shopping Cart
      */
-    @RequestMapping(value = "/shoppingCart/removeToCart/{itemId}/{quantity}",
+    @RequestMapping(value = "/shoppingCart/removeFromCart/{itemId}/{quantity}",
         method = RequestMethod.GET)
     @Timed
     public ResponseEntity<ShoppingCart> removeItemFromShoppingCart(@PathVariable Long itemId, @PathVariable Long quantity) {
         log.debug("REST request to Add Item into Shopping Cart: {}", itemId);
         ShoppingCart shoppingCart = shoppingCartDetailsService.addItemToShoppingCart(itemId, quantity);
+        return new ResponseEntity<>(shoppingCart,HttpStatus.OK);
+    }
+
+    /**
+     * GET  /shoppingCart/removeToCart/:itemId -> Remove Item from Shopping Cart
+     */
+    @RequestMapping(value = "/shoppingCart/removeFromCart/{itemId}",
+        method = RequestMethod.GET)
+    @Timed
+    public ResponseEntity<ShoppingCart> removeItemFromShoppingCart(@PathVariable Long itemId) {
+        log.debug("REST request to Remove Item from Shopping Cart: {}", itemId);
+        ShoppingCart shoppingCart = shoppingCartDetailsService.removeItemFromShoppingCart(itemId);
         return new ResponseEntity<>(shoppingCart,HttpStatus.OK);
     }
 

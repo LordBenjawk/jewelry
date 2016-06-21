@@ -4,13 +4,18 @@
             "home": {
                 "title": "Shopping Cart"
             },
+            "itemId": "Item Id",
             "itemNumber": "Item Number",
             "size": "Size",
             "color": "Color",
             "price": "Price",
             "quantity": "Quantity",
             "subtotal": "Subtotal",
-            "placeOrder": "Place order"
+            "placeOrder": "Place order",
+            "variant": "Variant",
+            "delete": {
+                "question": "Are you sure you want to delete Shopping Cart item id: {{ id }}?"
+            }
         }
     }
 }

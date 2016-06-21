@@ -4,8 +4,7 @@ angular.module('jewelryApp')
     .factory('ShoppingCartService', function ($http) {
         return {
             addItemIntoShoppingCart: function(item) {
-                if (item.quantity === undefined) return null;
-
+                if (item && item.quantity === undefined || item.quantity === 0) return null;
                 $http.get('/api/shoppingCart/addToCart/' + item.id  + "/" + item.quantity)
                     .success(function (response) {
                         return response;
@@ -19,9 +18,14 @@ angular.module('jewelryApp')
             },
             placeOrder: function(shoppingCart) {
                 if (shoppingCart === undefined) return null;
-
                 $http.post('api/purchaseOrders/placeOrder/', shoppingCart);
+            },
+            removeItemFromShoppingCart: function(item) {
+                if (item && item.id === undefined) return null;
+                return $http.get('/api/shoppingCart/removeFromCart/' + item.id)
+                    .then(function (response) {
+                        return response;
+                    });
             }
-
         };
     });

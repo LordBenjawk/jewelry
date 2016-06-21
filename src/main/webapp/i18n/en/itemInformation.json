@@ -22,7 +22,8 @@
             "item": "Item",
             "user": "User",
             "category": "Category",
-            "status": "Status"
+            "status": "Status",
+            "minMonth": "Month mininum quantity"
         }
     }
 }

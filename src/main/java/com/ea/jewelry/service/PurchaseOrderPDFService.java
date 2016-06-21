@@ -1,21 +1,26 @@
 package com.ea.jewelry.service;
 
+import com.ea.jewelry.domain.User;
+import com.ea.jewelry.repository.UserInformationRepository;
 import com.ea.jewelry.service.helper.PurchaseOrderPDFHelper;
-import com.ea.jewelry.service.helper.PurchaseOrderReportType;
+import com.ea.jewelry.web.rest.dto.PurchaseOrderDetailsReportDTO;
 import com.ea.jewelry.web.rest.dto.PurchaseOrderReportDTO;
 import com.ea.jewelry.web.rest.util.FileManagementUtil;
-import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.pdf.PdfWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.inject.Inject;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
+@Transactional
 public class PurchaseOrderPDFService {
     private final Logger log = LoggerFactory.getLogger(PurchaseOrderPDFService.class);
     private static final String DOT = ".";
@@ -27,73 +32,86 @@ public class PurchaseOrderPDFService {
     private String purchaseOrderReportsPath;
     private PurchaseOrderReportDTO purchaseOrderReportDTO;
 
+    @Inject
+    private UserInformationRepository userInformationRepository;
+
+    @Inject
+    private PurchaseOrderPDFHelper purchaseOrderPDFHelper;
+
     public PurchaseOrderPDFService() {
-    }
-
-    public PurchaseOrderPDFService(String purchaseOrderReportsPath, PurchaseOrderReportDTO purchaseOrderReportDTO) {
-        this.purchaseOrderReportsPath = purchaseOrderReportsPath;
-        this.purchaseOrderReportDTO = purchaseOrderReportDTO;
-    }
-
-    public String getPurchaseOrderReportsPath() {
-        return purchaseOrderReportsPath;
     }
 
     public void setPurchaseOrderReportsPath(String purchaseOrderReportsPath) {
         this.purchaseOrderReportsPath = purchaseOrderReportsPath;
     }
 
-    public PurchaseOrderReportDTO getPurchaseOrderReportDTO() {
-        return purchaseOrderReportDTO;
-    }
-
     public void setPurchaseOrderReportDTO(PurchaseOrderReportDTO purchaseOrderReportDTO) {
         this.purchaseOrderReportDTO = purchaseOrderReportDTO;
     }
 
-    public boolean createAdminReport() {
-        PurchaseOrderPDFHelper purchaseOrderPDFHelper;
-        String poNumber = purchaseOrderReportDTO.getPurchaseOrderNumber();
-        String orderDate = purchaseOrderReportDTO.getPurchaseOrderDate();
-        String status = purchaseOrderReportDTO.getStatus();
-        boolean isValid = Boolean.FALSE;
-        String reportPath = purchaseOrderReportsPath + ADMIN_REPORT;
-        File file = FileManagementUtil.createDirectoryAndFile(purchaseOrderReportsPath , ADMIN_REPORT);
-        Document document = new Document();
+    private boolean createReport(boolean price,
+                                 boolean allVendors,
+                                 String reportType) throws IOException, DocumentException {
+        String vendorName =
+            this.purchaseOrderReportDTO.getUserInformation().getUser().getLastName() +
+            this.purchaseOrderReportDTO.getUserInformation().getUser().getFirstName();
+        int vendor = this.purchaseOrderReportDTO.getUserInformation().getUser().getId().intValue();
+        PurchaseOrderReportDTO pOrder = this.purchaseOrderReportDTO;
+        List<User> vendors = getPurchaseOrderVendors();
+//        Document pdf = purchaseOrderPDFHelper.getDocument();
 
-        String cutomerName = purchaseOrderReportDTO.getUserInformation().getUser().getLastName() +
-            purchaseOrderReportDTO.getUserInformation().getUser().getFirstName();
-
-        try {
-            PdfWriter.getInstance(document, new FileOutputStream(reportPath));
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+//        PdfWriter.getInstance(pdf, new FileOutputStream(purchaseOrderReportsPath + reportType));
+        purchaseOrderPDFHelper.evaluator(price, allVendors, vendor, vendorName, pOrder, vendors, new FileOutputStream(purchaseOrderReportsPath + reportType));
+        if (FileManagementUtil.directoryExists(purchaseOrderReportsPath + reportType)) {
+            return true;
         }
-
-        purchaseOrderPDFHelper = new PurchaseOrderPDFHelper(document, PurchaseOrderReportType.ADMIN);
-        purchaseOrderPDFHelper.open();
-        purchaseOrderPDFHelper.setTitle("Purchase Order");
-        purchaseOrderPDFHelper.setHeaderInformation("customer", "vendor");
-
-        purchaseOrderPDFHelper.setHeaderPurchaseOrderInformation(poNumber, orderDate, status);
-        purchaseOrderPDFHelper.setBodyTable(purchaseOrderReportDTO);
-        purchaseOrderPDFHelper.close();
-
-//        isValid = Boolean.TRUE;
-        return isValid;
+        return false;
     }
 
-    public boolean createVendorReport() {
+    public boolean createAdminReport() throws IOException, DocumentException {
+        String reportType = File.separator + ADMIN_REPORT;
+        boolean result = createReport(true, true, reportType);
+        if (result && FileManagementUtil.directoryExists(purchaseOrderReportsPath + reportType)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean createVendorReport() throws IOException, DocumentException {
+        String reportType = File.separator + VENDOR_REPORT;
+        boolean result = createReport(false, false, reportType);
+        if (result && FileManagementUtil.directoryExists(purchaseOrderReportsPath + reportType)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean createAdminSeparatedVendorReport() throws IOException, DocumentException {
+        String reportType = File.separator + ADMIN_SEPARATED_VENDOR_REPORT;
+        boolean result = createReport(false, true, reportType);
+        if (result && FileManagementUtil.directoryExists(purchaseOrderReportsPath + reportType)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean createCustomerReport() throws IOException, DocumentException {
         return true;
     }
 
-    public boolean createAdminSeparatedVendorReport() {
-        return true;
-    }
+    private List<User> getPurchaseOrderVendors() {
+        int poItemSize = purchaseOrderReportDTO.getPurchaseOrderDetailsReportDTOList().size();
+        PurchaseOrderDetailsReportDTO itemDetails = null;
+        List<User> vendors = new ArrayList<>();
 
-    public boolean createCustomerReport() {
-        return true;
+        for(int i = 0; i < poItemSize; i++) {
+            itemDetails = purchaseOrderReportDTO.getPurchaseOrderDetailsReportDTOList().get(i);
+            User user = itemDetails.getItem().getItemInformation().getUser();
+
+            if (!vendors.contains(user)) {
+                vendors.add(user);
+            }
+        }
+        return vendors;
     }
 }

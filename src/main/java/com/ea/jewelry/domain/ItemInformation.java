@@ -53,6 +53,17 @@ public class ItemInformation implements Serializable {
     @JoinColumn(name = "status_id")
     private Status status;
 
+    @Column(name = "min_month")
+    private String minMonth;
+
+    public String getMinMonth() {
+        return minMonth;
+    }
+
+    public void setMinMonth(String minMonth) {
+        this.minMonth = minMonth;
+    }
+
     public Long getId() {
         return id;
     }

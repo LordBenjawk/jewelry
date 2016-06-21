@@ -3,9 +3,9 @@
 angular.module('jewelryApp')
     .config(function ($stateProvider) {
         $stateProvider
-            .state('purchaseOrdersAdmin', {
+            .state('purchaseOrdersCustomer', {
                 parent: 'entity',
-                url: '/purchaseOrdersAdmin',
+                url: '/purchaseOrdersCustomer',
                 data: {
                     authorities: ['ROLE_USER'],
                     pageTitle: 'jewelryApp.purchaseOrder.home.title'
@@ -13,7 +13,7 @@ angular.module('jewelryApp')
                 views: {
                     'content@': {
                         templateUrl: 'scripts/app/entities/purchaseOrder/purchaseOrders.html',
-                        controller: 'PurchaseOrderAdminController'
+                        controller: 'PurchaseOrderCustomerController'
                     }
                 },
                 resolve: {

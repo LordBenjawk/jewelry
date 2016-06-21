@@ -16,8 +16,8 @@ angular.module('jewelryApp')
             $scope.page = page;
             $scope.loadAll();
         };
-        $scope.loadAll();
 
+        $scope.loadAll();
 
         $scope.refresh = function () {
             $scope.loadAll();

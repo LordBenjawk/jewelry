@@ -10,6 +10,8 @@ import com.ea.jewelry.web.rest.dto.PurchaseOrderReportDTO;
 import com.ea.jewelry.web.rest.dto.ShoppingCartCustomerDTO;
 import com.ea.jewelry.web.rest.dto.ShoppingCartDetailsDTO;
 import com.ea.jewelry.web.rest.util.FileManagementUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,22 +21,13 @@ import java.util.*;
 @Service
 @Transactional
 public class PurchaseOrderService {
-
-    @Inject
-    private StatusRepository statusRepository;
-
-    @Inject
-    private PurchaseOrderRepository purchaseOrderRepository;
-
-    @Inject
-    private PurchaseOrderDetailsRepository purchaseOrderDetailsRepository;
-
-    @Inject
-    private UserInformationRepository userInformationRepository;
-
-    private PurchaseOrderPDFService purchaseOrderPDFService;
-
+    @Inject private PurchaseOrderDetailsRepository purchaseOrderDetailsRepository;
+    @Inject private UserInformationRepository userInformationRepository;
+    @Inject private PurchaseOrderPDFService purchaseOrderPDFService;
+    @Inject private PurchaseOrderRepository purchaseOrderRepository;
+    @Inject private StatusRepository statusRepository;
     private final String statusNew = "Available";
+    private final Logger log = LoggerFactory.getLogger(PurchaseOrderService.class);
 
     public PurchaseOrder generatePurchaseOrderFromShoppingCart(ShoppingCartCustomerDTO shoppingCartCustomerDTO) {
         User user = shoppingCartCustomerDTO.getUserInformation().getUser();
@@ -54,19 +47,32 @@ public class PurchaseOrderService {
 
     @Transactional(readOnly = true)
     public boolean generatePurchaseOrderReports(String applicationPath, PurchaseOrder purchaseOrder) {
-        boolean result = Boolean.FALSE;
-        String purchaseOrderReportsPath = FileManagementUtil.generatePurchaseOrderReportPath(
+        PurchaseOrderReportDTO purchaseOrderReportDTO = mapToPurchaseOrderReportDTO(purchaseOrder);
+        String purchaseOrderReportsPath = FileManagementUtil.generatePurchaseOrderReportPath(applicationPath);
+        String purchaseOrderItemReportsPath = FileManagementUtil.generatePurchaseOrderReportPath(
             applicationPath,
             purchaseOrder.getId());
-        PurchaseOrderReportDTO purchaseOrderReportDTO = mapToPurchaseOrderReportDTO(purchaseOrder);
-        purchaseOrderPDFService = new PurchaseOrderPDFService(purchaseOrderReportsPath, purchaseOrderReportDTO);
+        boolean result = Boolean.FALSE,
+            adminReport = Boolean.FALSE,
+            vendorReport = Boolean.FALSE,
+            adminSeparatedVendorReport = Boolean.FALSE;
 
-        // G admin report
-        boolean adminReport = purchaseOrderPDFService.createAdminReport();
-        // G vendor report
-        boolean vendorReport = purchaseOrderPDFService.createVendorReport();
-        // G admin_vendor report
-        boolean adminSeparatedVendorReport = purchaseOrderPDFService.createAdminSeparatedVendorReport();
+        FileManagementUtil.createDirectory(purchaseOrderReportsPath);
+        FileManagementUtil.createDirectory(purchaseOrderItemReportsPath);
+        purchaseOrderPDFService.setPurchaseOrderReportsPath(purchaseOrderItemReportsPath);
+        purchaseOrderPDFService.setPurchaseOrderReportDTO(purchaseOrderReportDTO);
+
+        try{
+            // G admin report
+            adminReport = purchaseOrderPDFService.createAdminReport();
+            // G vendor report
+            vendorReport = purchaseOrderPDFService.createVendorReport();
+            // G admin_vendor report
+            adminSeparatedVendorReport = purchaseOrderPDFService.createAdminSeparatedVendorReport();
+        } catch (Exception e) {
+            log.debug("Error Purchase Order Report");
+        }
+
 
         if (adminReport && vendorReport && adminSeparatedVendorReport) {
             result = Boolean.TRUE;

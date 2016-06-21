@@ -23,7 +23,7 @@ angular.module('jewelryApp')
                         return $translate.refresh();
                     }]
                 }
-            });
+            })
             //.state('shoppingCart.detail', {
             //    parent: 'entity',
             //    url: '/shoppingCart/{id}',
@@ -95,27 +95,31 @@ angular.module('jewelryApp')
             //        })
             //    }]
             //})
-            //.state('shoppingCart.delete', {
-            //    parent: 'shoppingCart',
-            //    url: '/{id}/delete',
-            //    data: {
-            //        authorities: ['ROLE_USER'],
-            //    },
-            //    onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
-            //        $modal.open({
-            //            templateUrl: 'scripts/app/entities/shoppingCart/shoppingCart-delete-dialog.html',
-            //            controller: 'ShoppingCartDeleteController',
-            //            size: 'md',
-            //            resolve: {
-            //                entity: ['ShoppingCart', function(ShoppingCart) {
-            //                    return ShoppingCart.get({id : $stateParams.id});
-            //                }]
-            //            }
-            //        }).result.then(function(result) {
-            //            $state.go('shoppingCart', null, { reload: true });
-            //        }, function() {
-            //            $state.go('^');
-            //        })
-            //    }]
-            //});
+            .state('shoppingCartCustomer.delete', {
+                parent: 'shoppingCartCustomer',
+                url: '/{id}/delete',
+                data: {
+                    authorities: ['ROLE_USER']
+                },
+                onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
+                    $modal.open({
+                        templateUrl: 'scripts/app/entities/shoppingCartCustomer/shoppingCartCustomer-delete-dialog.html',
+                        controller: 'ShoppingCartCustomerDeleteController',
+                        size: 'md',
+                        resolve: {
+                            translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                                $translatePartialLoader.addPart('shoppingCartCustomer');
+                                return $translate.refresh();
+                            }],
+                            entity: ['ShoppingCart', function() {
+                                return {id : $stateParams.id};
+                            }]
+                        }
+                    }).result.then(function(result) {
+                        $state.go('shoppingCartCustomer', null, { reload: true });
+                    }, function() {
+                        $state.go('^');
+                    })
+                }]
+            });
     });

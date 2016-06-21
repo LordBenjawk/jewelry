@@ -56,6 +56,26 @@ public class ShoppingCartService {
         return shoppingCart;
     }
 
+    public ShoppingCart removeItemFromShoppingCart(Long itemId) {
+        List<ShoppingCart> shoppingCartList = shoppingCartRepository.findByUserIsCurrentUser();
+        ShoppingCart shoppingCart = selectCorrectShoppingCart(shoppingCartList);
+        List<ShoppingCartDetails> shoppingCartDetailsList = shoppingCartDetailsRepository.findByShoppingCart(shoppingCart);
+        List<ShoppingCartDetails> shoppingCartDetailsListRemovedItem = new ArrayList<>();
+        Item item = itemRepository.findOne(itemId);
+
+        shoppingCartDetailsList.forEach(
+            list -> {
+                if (list.getItem() == item){
+                    shoppingCartDetailsListRemovedItem.add(list);
+                }
+            }
+        );
+
+        shoppingCartDetailsRepository.delete(shoppingCartDetailsListRemovedItem);
+
+        return shoppingCart;
+    }
+
     public ShoppingCartCustomerDTO getCurrent() {
         List<ShoppingCart> shoppingCartList = shoppingCartRepository.findByUserIsCurrentUser();
         ShoppingCart shoppingCart = selectCorrectShoppingCart(shoppingCartList);

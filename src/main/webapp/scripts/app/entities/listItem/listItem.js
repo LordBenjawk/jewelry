@@ -19,6 +19,7 @@ angular.module('jewelryApp')
                 resolve: {
                     translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                         $translatePartialLoader.addPart('listItem');
+                        $translatePartialLoader.addPart('shoppingCart');
                         $translatePartialLoader.addPart('global');
                         return $translate.refresh();
                     }]
@@ -43,6 +44,7 @@ angular.module('jewelryApp')
                         $translatePartialLoader.addPart('itemInformation');
                         $translatePartialLoader.addPart('item');
                         $translatePartialLoader.addPart('price');
+                        $translatePartialLoader.addPart('shoppingCart');
                         return $translate.refresh();
                     }],
                     entity: ['$stateParams', 'ListItem', function($stateParams, ListItem) {

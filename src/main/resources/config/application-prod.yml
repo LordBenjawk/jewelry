@@ -22,8 +22,8 @@ spring:
         driver-class-name: org.postgresql.ds.PGSimpleDataSource
         url: jdbc:postgresql://localhost:5432/jewelry
         name:
-        username: jewelry
-        password:
+        username: postgres
+        password: postgres
     jpa:
         database-platform: com.ea.jewelry.domain.util.FixedPostgreSQL82Dialect
         database: POSTGRESQL

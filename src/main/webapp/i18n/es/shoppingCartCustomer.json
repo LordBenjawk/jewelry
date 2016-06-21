@@ -10,7 +10,10 @@
             "price": "Precio",
             "quantity": "Cantidad",
             "subtotal": "Subtotal",
-            "placeOrder": "OrdenDeLugar"
+            "placeOrder": "OrdenDeLugar",
+            "delete": {
+                "question": "¿Estas seguro que quieres borrar el &Iacute;tem del Carrito de compra con id: {{ id }}?"
+            }
         }
     }
 }

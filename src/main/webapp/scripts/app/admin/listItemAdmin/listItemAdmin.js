@@ -46,7 +46,7 @@ angular.module('jewelryApp')
                         return $translate.refresh();
                     }],
                     entity: ['$stateParams', 'ListItem', function($stateParams, ListItem) {
-                        return ListItem.get({id : $stateParams.id});
+                        if ($stateParams.id !== 'new') return ListItem.get({id : $stateParams.id});
                     }]
                 }
             })
@@ -54,10 +54,9 @@ angular.module('jewelryApp')
                 parent: 'listItemAdmin',
                 url: '/new',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_USER']
                 },
                 onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
-                    //debugger;
                     $modal.open({
                         templateUrl: 'scripts/app/admin/listItemAdmin/listItemAdmin-dialog.html',
                         controller: 'ListItemAdminDialogController',
@@ -107,7 +106,7 @@ angular.module('jewelryApp')
                 parent: 'listItemAdmin.detail',
                 url: '/editItem/{idItem}',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_USER']
                 },
                 onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
                     $modal.open({
