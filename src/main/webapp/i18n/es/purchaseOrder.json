@@ -15,7 +15,7 @@
             "detail": {
                 "title": "Orden de Compra"
             },
-            "pONumber": "Numero PON",
+            "purchaseOrderNumber": "Numero PON",
             "purchaseOrderDetails": "Detalles de Orden de Compra",
             "user": "Usuario",
             "status": "Status"

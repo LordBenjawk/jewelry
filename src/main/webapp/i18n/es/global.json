@@ -46,10 +46,15 @@
             },
 
             "customer": {
-                "main": "Comprador"
+                "main": "Comprador",
+                "items": "&Iacute;tems",
+                "categories": "Categorias",
+                "purchaseOrders": "Ordenes De Compra",
+                "ShoppingCart": "Carrito de Compra"
             },
             "vendor": {
-                "main": "Vendedor"
+                "main": "Vendedor",
+                "setOrder": "Colocar Orden"
             },
             "language": "Idioma"
         },

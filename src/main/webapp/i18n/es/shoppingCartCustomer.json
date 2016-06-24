@@ -4,13 +4,15 @@
             "home": {
                 "title": "Carrito de Compras"
             },
+            "itemId": "Id de &Iacute;tem",
             "itemNumber": "Numero de &Iacute;tem",
             "size": "Tamaño",
             "color": "Color",
             "price": "Precio",
             "quantity": "Cantidad",
             "subtotal": "Subtotal",
-            "placeOrder": "OrdenDeLugar",
+            "placeOrder": "Orden De Lugar",
+            "variant": "Variante",
             "delete": {
                 "question": "¿Estas seguro que quieres borrar el &Iacute;tem del Carrito de compra con id: {{ id }}?"
             }

@@ -21,6 +21,9 @@
             "sizes": "Tamaños",
             "color": "Color",
             "image": "Imagen",
+            "name": "Nombre",
+            "size": "Tamaño",
+            "status": "Status",
             "purchaseOrderDetails": "DetallesdeOrdendeCompra"
         }
     }

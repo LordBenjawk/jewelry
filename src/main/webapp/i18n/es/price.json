@@ -15,10 +15,11 @@
             "detail": {
                 "title": "Precio"
             },
-            "tOne": "TUno",
-            "tTwo": "TDos",
-            "tThree": "TTres",
+            "tierOne": "Nivel Uno",
+            "tierTwo": "Nivel Dos",
+            "tierThree": "Nivel Tres",
             "vendorPrice": "Precio del Vendedor",
+            "name": "Nombre",
             "item": "&Iacute;tem"
         }
     }

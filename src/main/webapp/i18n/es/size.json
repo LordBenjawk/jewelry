@@ -1,6 +1,6 @@
 {
     "jewelryApp": {
-        "sizes" : {
+        "size" : {
             "home": {
                 "title": "Tamaños",
                 "createLabel": "Crea un nuevo Tamaños",

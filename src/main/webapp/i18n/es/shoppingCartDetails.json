@@ -3,7 +3,7 @@
         "shoppingCartDetails" : {
             "home": {
                 "title": "DetallesDeCarritoDeCompra",
-                "createLabel": "Crea un nuevo DetalleDeCarrotpDeCompra",
+                "createLabel": "Crea un nuevo Detalles De Carrito De Compra",
                 "createOrEditLabel": "Crea o edita un DetalleDeCarritoDeCompra"
             },
             "created": "Un nuevo DetalleDeCarritoDeCompra es creado con identificador {{ param }}",
